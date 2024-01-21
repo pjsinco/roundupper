@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import TheDO from '@/pages/TheDO.vue';
 import { useRouter } from 'vue-router';
+import { useParentRoutes } from '@/composables/useParentRoutes';
 
 export default {
   components: {
@@ -9,10 +10,8 @@ export default {
   },
 
   setup() {
+    const routes = useParentRoutes();
     const router = useRouter();
-    const routes = router.getRoutes().filter((r) => r.name !== 'Home');
-
-    console.log('routes', routes);
 
     const handleSubmit = (evt) => {
       router.push(selectedRoute.value);
