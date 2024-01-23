@@ -1,0 +1,18 @@
+template(v-slot:form)
+  div.form-group
+    label(for="headline") Headline
+    input(type="text" id="headline" v-model="headline").form-control
+
+  div.form-group
+    label(for="input") Text
+    textarea(id="input" v-model="body" rows="8").form-control
+
+  div.form-group
+    label(for="imageUrl") Image URL
+    input(type="text" id="imageUrl" v-model="imageUrl").form-control
+
+  div.form-group
+    label(for="altText") Alt Text
+    input(type="text" id="altText" v-model="altText").form-control
+
+  include ../../includes/copy-buttons

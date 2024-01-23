@@ -1,6 +1,7 @@
 <script>
 import { ref, computed, nextTick } from 'vue';
 import Workspace from '@/components/Workspace.vue';
+
 import { copyHtml, copyText } from '@/composables/useButtonFunctions';
 import { debounce } from 'lodash-es';
 import { marked } from 'marked';
@@ -44,13 +45,9 @@ export default {
         return `<h3 style="${h3styles.join('; ')}">${text}</h3>\n`;
       },
 
-      image(href, title, text) {
-        return `<img src="${href}" alt="${text}" class="img" />`;
-      },
-
       link(href, title, text) {
         return `
-          <a href="${href}" 
+          <a href="${href}"
              style="color: #22a49c; font-weight: bold; text-decoration: none;"
              title="${title}">${text}</a>`;
       },
@@ -82,10 +79,10 @@ export default {
 
         return `
           <div class="forOutlooks" pardot-region="unordered_list" style="${divStyles.join('; ')}">
-            <${listType} 
-              class="glist" 
-              style="${listStyles.join('; ')}" 
-              align="left" 
+            <${listType}
+              class="glist"
+              style="${listStyles.join('; ')}"
+              align="left"
               type="${listStyleType}"
             >
               ${body}</ol>
@@ -101,23 +98,26 @@ export default {
       headerIds: false,
     });
 
-    //    const initialState = {
-    //      input: '',
-    //    };
-    //
-    //    const state = reactive({ ...initialState });
+    const body = ref('');
+    const headline = ref('Lorem ipsum dolor');
+    const imageUrl = ref('https://picsum.photos/150/150');
+    const altText = ref('');
 
-    const input = ref('');
     const reset = () => {
-      input.value = '';
+      body.value =
+        'Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Maecenas faucibus mollis interdum. Sed posuere consectetur est at lobortis. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.\n';
+      headline.value = 'Lorem ipsum dolor';
+      imageUrl.value = 'https://picsum.photos/150/150';
+      altText.value = '';
     };
 
     const output = computed(() => {
-      return marked(input.value);
+      return marked(body.value);
     });
 
     nextTick(() => {
-      input.value = `# Lorem ipsum dolor sit amet\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n`;
+      body.value =
+        'Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Maecenas faucibus mollis interdum. Sed posuere consectetur est at lobortis. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.\n';
     });
 
     function copy() {
@@ -129,12 +129,15 @@ export default {
     }
 
     return {
-      input,
       props,
       reset,
       copy,
       copyTextVersion,
       output,
+      headline,
+      imageUrl,
+      altText,
+      body,
     };
   },
 };
@@ -142,8 +145,8 @@ export default {
 
 <template lang="pug">
   Workspace
-    include ../../views/affiliates/forms/news-item
-    include ../../views/affiliates/renders/news-item
+    include ../../views/affiliates/forms/news-item-with-image
+    include ../../views/affiliates/renders/news-item-with-image
 
 </template>
 

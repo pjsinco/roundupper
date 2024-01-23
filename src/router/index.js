@@ -46,6 +46,12 @@ const router = createRouter({
           component: () => import('../components/affiliates/NewsItem.vue'),
         },
         {
+          path: 'news-item-with-image',
+          name: 'News Item With Image',
+          component: () =>
+            import('../components/affiliates/NewsItemWithImage.vue'),
+        },
+        {
           path: 'header',
           name: 'Header',
           component: () => import('../components/affiliates/Header.vue'),

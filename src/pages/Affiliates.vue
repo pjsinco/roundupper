@@ -34,6 +34,7 @@ div.blank
     template(v-slot:select)
       select-template(v-on:template-selected="handleTemplateSelect")
         option(value="/affiliates/news-item") News Item
+        option(value="/affiliates/news-item-with-image") News Item With Image
         option(value="/affiliates/header") Header
     transition(name="fade" appear mode="out-in")
       component(v-bind:is="currentTemplate" v-bind:current-template="currentTemplate")
