@@ -1,5 +1,5 @@
 <script>
-import { ref, reactive } from 'vue';
+import { reactive } from 'vue';
 import Workspace from '@/components/Workspace.vue';
 import { reset, copyHtml, copyText } from '@/composables/useButtonFunctions';
 

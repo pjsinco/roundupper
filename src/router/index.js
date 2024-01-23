@@ -45,6 +45,11 @@ const router = createRouter({
           name: 'News Item',
           component: () => import('../components/affiliates/NewsItem.vue'),
         },
+        {
+          path: 'header',
+          name: 'Header',
+          component: () => import('../components/affiliates/Header.vue'),
+        },
       ],
     },
   ],

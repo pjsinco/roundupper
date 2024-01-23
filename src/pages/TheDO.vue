@@ -15,9 +15,6 @@ export default {
   setup() {
     const route = useRoute();
     const router = useRouter();
-    //const selected = ref(route.path);
-
-    console.log('route', route);
 
     const handleTemplateSelect = (path) => {
       router.push(path);
@@ -25,7 +22,6 @@ export default {
 
     return {
       handleTemplateSelect,
-      //selected,
     };
   },
 };

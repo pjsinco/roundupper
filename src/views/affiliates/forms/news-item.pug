@@ -1,0 +1,7 @@
+template(v-slot:form)
+  div.form-group
+    label(for="input") Text
+    //-textarea(id="input" :value="state.input" @input="update" rows="24").form-control
+    textarea(id="input" v-model="input" rows="24").form-control
+
+  include ../../includes/copy-buttons

@@ -54,6 +54,8 @@ function cloneHtml(html) {
 function copyHtml(manipulate = (html) => html) {
   collapseSelection('clone');
 
+  console.log('manipulate', manipulate);
+
   const rawHtml = getRenderedHtml();
 
   let html = manipulate(rawHtml);
@@ -78,8 +80,6 @@ function copyHtml(manipulate = (html) => html) {
 }
 
 function copyText(text) {
-  console.log('text', text);
-  console.log('okcopytextversion');
   const clipboard = new ClipboardJS('#copyTextVersion', {
     text: (trigger) => text,
   });
