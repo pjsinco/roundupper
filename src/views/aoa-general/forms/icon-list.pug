@@ -1,0 +1,11 @@
+template(v-slot:form)
+  div
+    div.form-group
+      label(for="imageUrl") Icon image URL
+      input(type="text" id="imageUrl" v-model="imageUrl").form-control
+
+    div.form-group
+      label(for="input") Text
+      textarea(id="input" v-model="input" rows="4").form-control
+
+  include ../../includes/copy-buttons

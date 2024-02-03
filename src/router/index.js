@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../pages/Home.vue';
 import TheDO from '../pages/TheDO.vue';
 import Affiliates from '../pages/Affiliates.vue';
+import AoaGeneral from '../pages/AoaGeneral.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -55,6 +56,19 @@ const router = createRouter({
           path: 'header',
           name: 'Header',
           component: () => import('../components/affiliates/Header.vue'),
+        },
+      ],
+    },
+    {
+      path: '/aoa-general',
+      name: 'Aoa General',
+      component: AoaGeneral,
+      redirect: '/aoa-general/icon-list',
+      children: [
+        {
+          path: 'icon-list',
+          name: 'Icon List',
+          component: () => import('../components/aoa-general/IconList.vue'),
         },
       ],
     },
