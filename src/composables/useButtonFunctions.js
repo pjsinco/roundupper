@@ -1,4 +1,5 @@
 import { popUpToast } from '@/composables/useToast';
+import 'animate.css';
 
 function reset() {
   const reset = () => {
@@ -13,13 +14,12 @@ function clipboardSuccess(
   color = '#1ccacd'
 ) {
   const rendered = document.getElementById('rendered');
-  rendered.classList.add('animated', 'jello');
+  rendered.classList.add('animate__animated', 'animate__jello');
 
   rendered.addEventListener(
     'animationend',
     (evt) => {
-      console.log('evt', evt);
-      this.classList.remove('animated', 'jello');
+      evt.target.classList.remove('animate__animated', 'animate__jello');
     },
     { once: true }
   );
@@ -54,8 +54,6 @@ function cloneHtml(html) {
 function copyHtml(manipulate = (html) => html) {
   collapseSelection('clone');
 
-  console.log('manipulate', manipulate);
-
   const rawHtml = getRenderedHtml();
 
   let html = manipulate(rawHtml);
@@ -85,7 +83,6 @@ function copyText(text) {
   });
 
   clipboard.on('success', function (evt) {
-    console.log('okclipboardsuccess');
     clipboardSuccess(
       document.getElementById('copyTextVersion'),
       'Text version copied',
