@@ -1,9 +1,13 @@
 <script>
-import { ref, computed, nextTick } from 'vue';
+import { nextTick, ref, computed, onMounted } from 'vue';
 
 import Workspace from '@/components/Workspace.vue';
 import { copyHtml, copyText } from '@/composables/useButtonFunctions';
-import { debounce } from 'lodash-es';
+import { find } from 'lodash-es';
+import { mdRendererForAoaGeneral } from '@/composables/useMdRendererForAoaGeneral';
+import * as CodeMirror from 'codemirror';
+import 'codemirror/lib/codemirror.css';
+import 'codemirror/mode/markdown/markdown';
 import { marked } from 'marked';
 
 export default {
@@ -14,76 +18,44 @@ export default {
   props: ['currentTemplate'],
 
   setup(props) {
-    const renderer = {
-      paragraph(text) {
-        //return `
-        //  <p style="margin: 0 0 0 0;">${text}<br>&nbsp;</p>\n`;
-        return `
-          <p style="margin: 0 0 0 0;">${text}</p>`;
-      },
+    const defaultImageUrl =
+      'https://resources.osteopathic.org/l/979203/2024-02-01/czs3n/979203/17067972618vJSBE23/placeholder_100px.png';
+    const defaultInput = `**Lorem ipsum dolor** sit amet, consectetur adipisicing elit, sed do eiusmod [tempor incididunt](https://osteopathic.org) ut labore et dolore magna aliqua.\n`;
 
-      heading(text, level) {
-        if (level == 1) {
-          const h1styles = [
-            'color: #000066;',
-            'font-size: 20px;',
-            'font-weight: bold;',
-            'line-height: 28px;',
-            'margin-bottom: 12px;',
-            'margin-top: 0;',
-            'text-align: left',
-          ];
-          return `<h1 style="${h1styles.join('; ')}">${text}</h1>\n`;
-        }
+    const renderer = mdRendererForAoaGeneral();
 
-        return;
-      },
+    let currId = 0;
 
-      link(href, title, text) {
-        return `
-          <a href="${href}" 
-             style="color: #22a49c; font-weight: bold; text-decoration: none;"
-             title="${title}">${text}</a>`;
-      },
+    function getId() {
+      const idToReturn = currId;
+      currId++;
+      return idToReturn;
+    }
 
-      list(body, ordered) {
-        const divStyles = [
-          'text-align: left',
-          'color: #141416',
-          'margin: 0',
-          'padding: 0',
-          'font-family: Arial, sans-serif',
-          'font-size: 16px',
-          'font-weight: normal',
-          'line-height: 24px',
-        ];
+    function getNewItem() {
+      const id = getId();
+      return {
+        imageUrl: defaultImageUrl,
+        input: defaultInput,
+        enabled: true,
+        id,
+        get output() {
+          return marked(this.input);
+        },
+      };
+    }
 
-        const listStyles = [
-          'color: #141416',
-          'margin: 25px 0 25px 25px',
-          'padding: 0',
-          'font-family: Arial, sans-serif',
-          'font-size: 16px',
-          'line-height: 24p',
-        ];
+    function getDefaultItems() {
+      const item1 = getNewItem();
+      const item2 = getNewItem();
+      const item3 = getNewItem();
 
-        const listType = ordered ? 'ol' : 'ul';
-        const listStyleType = ordered ? '1' : 'disc';
-        console.log('ordered', ordered);
-        console.log('listType', listType);
+      return [item1, item2, item3];
+    }
 
-        return `
-          <div class="forOutlooks" pardot-region="unordered_list" style="${divStyles.join('; ')}">
-            <${listType} 
-              class="glist" 
-              style="${listStyles.join('; ')}" 
-              align="left" 
-              type="${listStyleType}"
-            >
-              ${body}</ol>
-            <${listType}></div>\n`;
-      },
-    };
+    const items = ref(getDefaultItems());
+
+    console.log('items.value[0]', items.value[0]);
 
     marked.use({ renderer });
 
@@ -92,23 +64,9 @@ export default {
       headerIds: false,
     });
 
-    const defaultImageUrl =
-      'https://resources.osteopathic.org/l/979203/2024-02-01/czs3n/979203/17067972618vJSBE23/placeholder_100px.png';
-
-    const imageUrl = ref(defaultImageUrl);
-    const input = ref('');
     const reset = () => {
-      input.value = '';
-      imageUrl.value = '';
+      items.value = getDefaultItems();
     };
-
-    const output = computed(() => {
-      return marked(input.value);
-    });
-
-    nextTick(() => {
-      input.value = `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n`;
-    });
 
     function copy() {
       copyHtml();
@@ -118,28 +76,93 @@ export default {
       copyText();
     }
 
-    return {
-      input,
-      imageUrl,
+    function initEditor(item) {
+      const el = document.getElementById(`input-${item.id}`);
 
+      const editor = CodeMirror.fromTextArea(el, {
+        mode: 'markdown',
+        lineWrapping: true,
+      });
+      editor.setSize('100%', '80px');
+      editor.on('change', () => {
+        item.input = editor.getValue();
+      });
+      return editor;
+    }
+
+    function initEditors() {
+      const editors = items.value.map(initEditor);
+    }
+
+    onMounted(initEditors);
+
+    function handleDelete(item) {
+      item.enabled = false;
+    }
+
+    function handleAdd() {
+      const newItem = getNewItem();
+
+      items.value.push(newItem);
+
+      nextTick(() => {
+        const item = items.value[items.value.length - 1];
+        initEditor(item);
+      });
+    }
+
+    const numEnabled = computed(() => {
+      return items.value.filter((item) => {
+        return item.enabled === true;
+      }).length;
+    });
+
+    return {
+      items,
       props,
       reset,
       copy,
       copyTextVersion,
-      output,
+      handleDelete,
+      handleAdd,
+      numEnabled,
     };
   },
 };
 </script>
 
 <template lang="pug">
+
   Workspace
+
     include ../../views/aoa-general/forms/icon-list
     include ../../views/aoa-general/renders/icon-list
 
 </template>
 
-<style>
+<style lang="scss">
+@import './../../assets/_variables.scss';
+
+.item-group {
+  background: rgba($darkturquoise, 0.09);
+  margin-bottom: 1.25rem;
+  margin-top: 1.75rem;
+  padding: 1.25rem;
+
+  h3 {
+    margin-top: 0;
+    margin-bottom: 1.25rem;
+  }
+}
+
+.item-group + .item-group {
+  margin: 0;
+}
+
+.delete {
+  cursor: pointer;
+}
+
 @media only screen and (min-width: 480px) {
   .mj-column-per-100 {
     width: 100% !important;
