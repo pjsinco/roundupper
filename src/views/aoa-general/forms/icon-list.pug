@@ -6,13 +6,13 @@ template(v-slot:form)
       h4 Icon list item #[span(v-if="numEnabled > 1" @click="handleDelete(item)").delete.pull-right &#x2715;]
       div.form-group
         label(:for="'imageUrl-' + item.id") Icon URL
-        input(type="text" :id="'imageUrl-' + item.id" v-model="item.imageUrl" onFocus="selectText();").form-control
+        input(type="text" :id="'imageUrl-' + item.id" v-model="item.imageUrl").form-control
         //- p.help-block Icon size: 100px x 100px
 
       div.form-group
-        label(:for="'input-' + item.id") Text
+        label(:for="'input-' + item.id") Text (in Markdown)
         textarea(:id="'input-' + item.id" v-model="item.input" rows="4").form-control
-        p.help-block Markdown
+        //- p.help-block Markdown
 
   div.form-group
     button(@click="handleAdd").btn.btn-default.pull-right Add item

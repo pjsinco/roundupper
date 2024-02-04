@@ -1,5 +1,6 @@
 <script>
 import { nextTick, ref, computed, onMounted } from 'vue';
+
 import Workspace from '@/components/Workspace.vue';
 import { copyHtml, copyText } from '@/composables/useButtonFunctions';
 import { find } from 'lodash-es';
@@ -144,7 +145,6 @@ export default {
 
 .item-group {
   background: rgba($darkturquoise, 0.09);
-
   margin-bottom: 1.25rem;
   margin-top: 1.75rem;
   padding: 1.25rem;
