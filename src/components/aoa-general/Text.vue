@@ -1,13 +1,72 @@
 <script>
-import { ref } from 'vue';
+import { nextTick, ref, computed, onMounted } from 'vue';
+import Workspace from '@/components/Workspace.vue';
+import { copyHtml, copyText } from '@/composables/useButtonFunctions';
+import { mdRendererForAoaGeneral } from '@/composables/useMdRendererForAoaGeneral';
+import { editorFromTextArea } from '@/composables/useEditorFromTextArea';
+import { marked } from 'marked';
 
 export default {
-  setup() {
-    return {};
+  components: {
+    Workspace,
+  },
+
+  props: ['currentTemplate'],
+
+  setup(props) {
+    const defaultInput = `**Lorem ipsum dolor** sit amet, consectetur adipisicing elit, sed do eiusmod [tempor incididunt](https://osteopathic.org) ut labore et dolore magna aliqua.\n`;
+    const input = ref(defaultInput);
+
+    const renderer = mdRendererForAoaGeneral();
+
+    marked.use({ renderer });
+
+    marked.setOptions({
+      gfm: true,
+      headerIds: false,
+    });
+
+    // nextTick(() => (input.value = defaultInput));
+
+    const output = computed(() => {
+      return marked(input.value);
+    });
+
+    function initEditor() {
+      const el = document.getElementById('input');
+      const editor = editorFromTextArea(input, el, '300px');
+    }
+
+    function copy() {
+      copyHtml();
+    }
+
+    function copyTextVersion() {
+      copyText();
+    }
+
+    function reset() {
+      input.value = defaultInput;
+    }
+
+    onMounted(initEditor);
+
+    return {
+      input,
+      output,
+      props,
+      reset,
+      copy,
+      copyTextVersion,
+    };
   },
 };
 </script>
 
-<template></template>
+<template lang="pug">
+  Workspace
+    include ../../views/aoa-general/forms/text
+    include ../../views/aoa-general/renders/text
+</template>
 
 <style scoped></style>

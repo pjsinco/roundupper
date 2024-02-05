@@ -33,6 +33,7 @@ div.blank
   navbar(templateName="AoaGeneral")
     template(v-slot:select)
       select-template(v-on:template-selected="handleTemplateSelect")
+        option(value="/aoa-general/text") Text
         option(value="/aoa-general/icon-list") Icon list
     transition(name="fade" appear mode="out-in")
       component(v-bind:is="currentTemplate" v-bind:current-template="currentTemplate")

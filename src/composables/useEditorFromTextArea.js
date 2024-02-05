@@ -9,7 +9,7 @@ export function editorFromTextArea(model, textAreaEl, size = '80px') {
   });
   editor.setSize('100%', size);
   editor.on('change', () => {
-    model.input = editor.getValue();
+    model.value = editor.getValue();
   });
 
   return editor;

@@ -63,7 +63,7 @@ const router = createRouter({
       path: '/aoa-general',
       name: 'AOA General',
       component: AoaGeneral,
-      redirect: '/aoa-general/icon-list',
+      redirect: '/aoa-general/text',
       children: [
         {
           path: 'icon-list',
