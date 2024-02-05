@@ -70,6 +70,11 @@ const router = createRouter({
           name: 'Icon List',
           component: () => import('../components/aoa-general/IconList.vue'),
         },
+        {
+          path: 'text',
+          name: 'Text',
+          component: () => import('../components/aoa-general/Text.vue'),
+        },
       ],
     },
   ],
