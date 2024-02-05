@@ -66,14 +66,19 @@ const router = createRouter({
       redirect: '/aoa-general/text',
       children: [
         {
-          path: 'icon-list',
-          name: 'Icon List',
-          component: () => import('../components/aoa-general/IconList.vue'),
-        },
-        {
           path: 'text',
           name: 'Text',
           component: () => import('../components/aoa-general/Text.vue'),
+        },
+        {
+          path: 'button',
+          name: 'Button',
+          component: () => import('../components/aoa-general/Button.vue'),
+        },
+        {
+          path: 'icon-list',
+          name: 'Icon List',
+          component: () => import('../components/aoa-general/IconList.vue'),
         },
       ],
     },

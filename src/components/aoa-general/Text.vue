@@ -1,5 +1,5 @@
 <script>
-import { nextTick, ref, computed, onMounted } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import Workspace from '@/components/Workspace.vue';
 import { copyHtml, copyText } from '@/composables/useButtonFunctions';
 import { mdRendererForAoaGeneral } from '@/composables/useMdRendererForAoaGeneral';
@@ -25,8 +25,6 @@ export default {
       gfm: true,
       headerIds: false,
     });
-
-    // nextTick(() => (input.value = defaultInput));
 
     const output = computed(() => {
       return marked(input.value);
