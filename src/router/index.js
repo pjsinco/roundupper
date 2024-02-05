@@ -76,6 +76,11 @@ const router = createRouter({
           component: () => import('../components/aoa-general/Button.vue'),
         },
         {
+          path: 'header',
+          name: 'Header',
+          component: () => import('../components/aoa-general/Header.vue'),
+        },
+        {
           path: 'icon-list',
           name: 'Icon List',
           component: () => import('../components/aoa-general/IconList.vue'),

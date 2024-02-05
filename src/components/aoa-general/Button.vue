@@ -1,5 +1,5 @@
 <script>
-import { ref, computed, onMounted } from 'vue';
+import { ref } from 'vue';
 import Workspace from '@/components/Workspace.vue';
 import { copyHtml, copyText } from '@/composables/useButtonFunctions';
 
