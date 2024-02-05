@@ -371,3 +371,7 @@ navbar-inverse .navbar-nav>.open>a:hover {
   border-color: $first-color;
   box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba($first-color, .6);
 }
+
+.CodeMirror {
+  border: 1px solid $light-gray;
+}
