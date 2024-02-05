@@ -1,9 +1,13 @@
 <script>
 import { nextTick, ref, computed, onMounted } from 'vue';
+
 import Workspace from '@/components/Workspace.vue';
 import { copyHtml, copyText } from '@/composables/useButtonFunctions';
+import { find } from 'lodash-es';
 import { mdRendererForAoaGeneral } from '@/composables/useMdRendererForAoaGeneral';
-import { editorFromTextArea } from '@/composables/useEditorFromTextArea';
+import * as CodeMirror from 'codemirror';
+import 'codemirror/lib/codemirror.css';
+import 'codemirror/mode/markdown/markdown';
 import { marked } from 'marked';
 
 export default {
@@ -51,6 +55,8 @@ export default {
 
     const items = ref(getDefaultItems());
 
+    console.log('items.value[0]', items.value[0]);
+
     marked.use({ renderer });
 
     marked.setOptions({
@@ -72,7 +78,16 @@ export default {
 
     function initEditor(item) {
       const el = document.getElementById(`input-${item.id}`);
-      const editor = editorFromTextArea(item, el);
+
+      const editor = CodeMirror.fromTextArea(el, {
+        mode: 'markdown',
+        lineWrapping: true,
+      });
+      editor.setSize('100%', '80px');
+      editor.on('change', () => {
+        item.input = editor.getValue();
+      });
+      return editor;
     }
 
     function initEditors() {
@@ -119,6 +134,7 @@ export default {
 <template lang="pug">
 
   Workspace
+
     include ../../views/aoa-general/forms/icon-list
     include ../../views/aoa-general/renders/icon-list
 
