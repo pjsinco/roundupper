@@ -14,7 +14,7 @@ export default {
   props: ['currentTemplate'],
 
   setup(props) {
-    const defaultInput = `**Lorem ipsum dolor** sit amet, consectetur adipisicing elit, sed do eiusmod [tempor incididunt](https://osteopathic.org) ut labore et dolore magna aliqua.\n`;
+    const defaultInput = `# Lorem ipsum dolor sit amet\nConsectetur adipisicing **elit**, sed do *eiusmod* [tempor incididunt](https://osteopathic.org) ut labore et dolore magna aliqua.\n`;
     const input = ref(defaultInput);
 
     const renderer = mdRendererForAoaGeneral();
@@ -34,7 +34,7 @@ export default {
 
     function initEditor() {
       const el = document.getElementById('input');
-      const editor = editorFromTextArea(input, el, '300px');
+      const editor = editorFromTextArea(input, el, 'calc(100vh - 275px)');
     }
 
     function copy() {

@@ -16,7 +16,7 @@ export function mdRendererForAoaGeneral() {
           'line-height: 28px;',
           'margin-bottom: 12px;',
           'margin-top: 0;',
-          'text-align: left',
+          'text-align: center',
         ];
         return `<h1 style="${h1styles.join('; ')}">${text}</h1>\n`;
       }
