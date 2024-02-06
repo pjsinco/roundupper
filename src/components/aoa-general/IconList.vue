@@ -36,6 +36,7 @@ export default {
       const id = getId();
       return {
         imageUrl: defaultImageUrl,
+        iconLink: '',
         input: defaultInput,
         enabled: true,
         id,
