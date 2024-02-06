@@ -1,12 +1,12 @@
 <script>
 import { ref } from 'vue';
-import TheDO from '@/pages/TheDO.vue';
+import Navbar from '@/components/Navbar.vue';
 import { useRouter } from 'vue-router';
 import { useParentRoutes } from '@/composables/useParentRoutes';
 
 export default {
   components: {
-    TheDO,
+    Navbar,
   },
 
   setup() {
@@ -29,6 +29,8 @@ export default {
 </script>
 
 <template lang="pug">
+  div
+    navbar
   div.container-fluid
     div.row
       div.col-md-offset-3.col-md-6.text-center(style="margin-top: 5rem;")
