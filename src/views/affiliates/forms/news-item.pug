@@ -1,7 +1,7 @@
 template(v-slot:form)
+  h1 News item
   div.form-group
-    label(for="input") Text
-    //-textarea(id="input" :value="state.input" @input="update" rows="24").form-control
-    textarea(id="input" v-model="input" rows="24").form-control
+    label(for="input") Text (in Markdown)
+    textarea(id="input" v-model="input").form-control
 
   include ../../includes/copy-buttons

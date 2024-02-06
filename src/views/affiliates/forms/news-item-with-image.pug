@@ -1,11 +1,12 @@
 template(v-slot:form)
+  h1 News item with image
   div.form-group
     label(for="headline") Headline
     input(type="text" id="headline" v-model="headline").form-control
 
   div.form-group
-    label(for="input") Text
-    textarea(id="input" v-model="body" rows="8").form-control
+    label(for="input") Text (in Markdown)
+    textarea(id="input" v-model="input").form-control
 
   div.form-group
     label(for="imageUrl") Image URL
