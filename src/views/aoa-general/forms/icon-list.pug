@@ -5,8 +5,13 @@ template(v-slot:form)
     div(v-if="item.enabled").item-group
       h4 Icon list item #[span(v-if="numEnabled > 1" @click="handleDelete(item)").delete.pull-right &#x2715;]
       div.form-group
-        label(:for="'imageUrl-' + item.id") Icon URL
+        label(:for="'imageUrl-' + item.id") Icon image URL
         input(type="text" :id="'imageUrl-' + item.id" v-model="item.imageUrl").form-control
+        //- p.help-block Icon size: 100px x 100px
+      div.form-group
+
+        label(:for="'iconLink-' + item.id") Icon link (optional)
+        input(type="text" :id="'iconLink-' + item.id" v-model="item.iconLink").form-control
         //- p.help-block Icon size: 100px x 100px
 
       div.form-group

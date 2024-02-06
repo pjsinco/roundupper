@@ -54,7 +54,7 @@ const router = createRouter({
         },
         {
           path: 'header',
-          name: 'Header',
+          name: 'Affiliates Header',
           component: () => import('../components/affiliates/Header.vue'),
         },
       ],
