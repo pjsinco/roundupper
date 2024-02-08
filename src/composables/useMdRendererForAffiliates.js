@@ -27,6 +27,20 @@ export function getRenderer() {
         'color: #235685',
       ];
 
+      const h4styles = [
+        'margin: 0px 0px 6px 0px',
+        'font-family: Arial, Helvetica, sans-serif',
+        'font-size: 18px',
+        'font-weight: normal',
+        'line-height: 24px',
+        'text-align: left',
+        'color: #235685',
+      ];
+
+      if (level == 4) {
+        return `<h4 style="${h4styles.join('; ')}">${text}</h4>\n`;
+      }
+
       return `<h3 style="${h3styles.join('; ')}">${text}</h3>\n`;
     },
 
