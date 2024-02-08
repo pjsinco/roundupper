@@ -1,6 +1,5 @@
 <script>
 import { nextTick, ref, computed, onMounted } from 'vue';
-
 import Workspace from '@/components/Workspace.vue';
 import { copyHtml, copyText } from '@/composables/useButtonFunctions';
 import { find } from 'lodash-es';
@@ -133,12 +132,9 @@ export default {
 </script>
 
 <template lang="pug">
-
   Workspace
-
     include ../../views/aoa-general/forms/icon-list
     include ../../views/aoa-general/renders/icon-list
-
 </template>
 
 <style lang="scss">

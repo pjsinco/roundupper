@@ -38,6 +38,7 @@ div.blank
         option(value="/aoa-general/header") Header
         option(value="/aoa-general/spacer") Spacer
         option(value="/aoa-general/icon-list") Icon list
+        option(value="/aoa-general/image-block") Image Block
     transition(name="fade" appear mode="out-in")
       component(v-bind:is="currentTemplate" v-bind:current-template="currentTemplate")
   RouterView
