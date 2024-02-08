@@ -85,6 +85,11 @@ const router = createRouter({
           name: 'Icon List',
           component: () => import('../components/aoa-general/IconList.vue'),
         },
+        {
+          path: 'image-block',
+          name: 'Image Block',
+          component: () => import('../components/aoa-general/ImageBlock.vue'),
+        },
       ],
     },
   ],

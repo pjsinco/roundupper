@@ -9,18 +9,32 @@ export function mdRendererForAoaGeneral() {
 
     heading(text, level) {
       if (level == 1) {
-        const h1styles = [
-          'color: #000066;',
+        const h1Styles = [
+          'margin-bottom: 12px;',
+          'margin-top: 0;',
+          'font-family: Arial, Helvetica, sans-serif;',
           'font-size: 20px;',
           'font-weight: bold;',
           'line-height: 28px;',
+          'text-align: center',
+          'color: #000066;',
+        ];
+        return `<h1 style="${h1Styles.join('; ')}">${text}</h1>\n`;
+      } else if (level == 2) {
+        const h2Styles = [
           'margin-bottom: 12px;',
           'margin-top: 0;',
-          'text-align: center',
+          'font-family: Arial, Helvetica, sans-serif;',
+          'font-size: 16px;',
+          'font-weight: normal',
+          'text-align: center;',
+          'line-height: 24px;',
+          'color: #666666;',
         ];
-        return `<h1 style="${h1styles.join('; ')}">${text}</h1>\n`;
+        return `<h2 style="${h2Styles.join('; ')}">${text}</h1>\n`;
       }
 
+      // ignore other levels for now
       return;
     },
 
