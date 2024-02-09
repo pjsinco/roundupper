@@ -15,7 +15,24 @@ export default {
     const link = ref('');
 
     function copy() {
-      copyHtml();
+      // our inline style 'mso-padding-alt' gets stripped
+      // somewhere along the line, so we need to add it back in.
+      const addMsoStyle = (html) => {
+        const fragment = new DocumentFragment();
+        const div = document.createElement('div');
+        div.innerHTML = html;
+        fragment.append(div);
+
+        // now we can use a DOM methods
+        const tdEl = fragment.getElementById('msoPadding');
+        const styleAttr = tdEl.getAttribute('style');
+        const newStyleAttr = `${styleAttr} mso-padding-alt: 10px 32px;`;
+        tdEl.setAttribute('style', newStyleAttr);
+
+        return fragment.firstElementChild.innerHTML;
+      };
+
+      copyHtml(addMsoStyle);
     }
 
     function copyTextVersion() {
