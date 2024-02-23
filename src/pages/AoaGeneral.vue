@@ -1,5 +1,6 @@
 <script>
 import { ref } from 'vue';
+
 import Navbar from '@/components/Navbar.vue';
 import SelectTemplate from '@/components/SelectTemplate.vue';
 import { useRoute, useRouter, RouterView } from 'vue-router';
@@ -39,6 +40,7 @@ div.blank
         option(value="/aoa-general/spacer") Spacer
         option(value="/aoa-general/icon-list") Icon list
         option(value="/aoa-general/image-block") Image Block
+        option(value="/aoa-general/two-up-signature") Two Up Signature
     transition(name="fade" appear mode="out-in")
       component(v-bind:is="currentTemplate" v-bind:current-template="currentTemplate")
   RouterView

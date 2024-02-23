@@ -1,5 +1,6 @@
 import * as CodeMirror from 'codemirror';
 import 'codemirror/lib/codemirror.css';
+import '@/assets/codemirror_overrides.css';
 import 'codemirror/mode/markdown/markdown';
 
 export function editorFromTextArea(model, textAreaEl, size = '80px') {

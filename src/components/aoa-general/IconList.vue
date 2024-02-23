@@ -140,21 +140,6 @@ export default {
 <style lang="scss">
 @import './../../assets/_variables.scss';
 
-.item-group {
-  background: rgba($darkturquoise, 0.09);
-  margin-bottom: 1.25rem;
-  margin-top: 1.75rem;
-  padding: 1.25rem;
-
-  h3 {
-    margin-top: 0;
-    margin-bottom: 1.25rem;
-  }
-}
-
-.item-group + .item-group {
-  margin: 0;
-}
 
 .delete {
   cursor: pointer;
