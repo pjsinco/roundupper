@@ -90,6 +90,17 @@ const router = createRouter({
           name: 'Image Block',
           component: () => import('../components/aoa-general/ImageBlock.vue'),
         },
+        {
+          path: 'two-up-signature',
+          name: 'Two-Up Signature',
+          component: () =>
+            import('../components/aoa-general/TwoUpSignature.vue'),
+        },
+        {
+          path: 'spacer',
+          name: 'Spacer',
+          component: () => import('../components/aoa-general/Spacer.vue'),
+        },
       ],
     },
   ],

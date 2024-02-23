@@ -1,0 +1,45 @@
+template(v-slot:render-container)
+  div(style="max-width: 600px; margin: 0 auto; padding: 24px 0; background-color: #fff; border: 1px dotted #d0d0d0; overflow: hidden;")
+    div#rendered
+      table(align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#ffffff;background-color:#ffffff;width:100%;")
+        tbody
+          tr
+            td(style="direction:ltr;font-size:0px;padding:0px;text-align:center;")
+              <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="two-up-image-left-outlook" style="vertical-align:top;width:300px;" ><![endif]-->
+              div(class="mj-column-per-50 mj-outlook-group-fix two-up-image-left" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;")
+                table(border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%")
+                  tbody
+                    tr
+                      td(style="vertical-align:top;padding:0 12px 24px 36px;")
+                        table(border="0" cellpadding="0" cellspacing="0" role="presentation" style="" width="100%")
+                          tbody
+                            tr
+                              td(align="left" :style="{ fontSize: '0px', padding: (sig1Padding / 2) + 'px 0 ' + (12 + (sig1Padding / 2)) + 'px 0', wordBreak: 'break-word' }")
+                                table(border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0px;")
+                                  tbody
+                                    tr
+                                      td(:style="{ width: sig1ImageWidth + 'px'}")
+                                        img(alt="Signature" :src="sig1Url" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" :width="sig1ImageWidth" height="auto")
+                            tr
+                              td(align="left" style="font-size:0px;padding:0;word-break:break-word;")
+                                div(style="font-family:Arial, Helvetica, sans-serif;font-size:16px;font-weight:normal;line-height:24px;text-align:left;color:#2a2a2a;" v-html="sig1Output" ref="guideEl")
+              <!--[if mso | IE]></td><td class="two-up-image-right-outlook" style="vertical-align:top;width:300px;" ><![endif]-->
+              div(class="mj-column-per-50 mj-outlook-group-fix two-up-image-right" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;")
+                table(border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%")
+                  tbody
+                    tr
+                      td(style="vertical-align:top;padding:0 36px 24px 12px;")
+                        table(border="0" cellpadding="0" cellspacing="0" role="presentation" style="" width="100%")
+                          tbody
+                            tr
+                              td(align="left" :style="{ fontSize: '0px', padding: (sig2Padding / 2) + 'px 0 ' + (12 + (sig2Padding / 2)) + 'px 0', wordBreak: 'break-word' }")
+
+                                table(border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0px;")
+                                  tbody
+                                    tr
+                                      td(:style="{ width: sig2ImageWidth + 'px' }")
+                                        img(alt="Signature" :src="sig2Url" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" :width="sig2ImageWidth" height="auto")
+                            tr
+                              td(align="left" style="font-size:0px;padding:0;word-break:break-word;")
+                                div(style="font-family:Arial, Helvetica, sans-serif;font-size:16px;font-weight:normal;line-height:24px;text-align:left;color:#2a2a2a;" v-html="sig2Output")
+              <!--[if mso | IE]></td></tr></table><![endif]-->

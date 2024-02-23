@@ -9,8 +9,14 @@ $border-radius: 1px;
 
 @import './variables';
 @import 'animate.css';
-@import './tooltipped';
-@import './toast';
+@import './modules/component';
+@import './modules/item-group';
+@import './modules/tooltipped';
+@import './modules/toast';
+
+html {
+  font-size: 16px;
+}
 
 html,
 body {
@@ -81,11 +87,10 @@ body.no-rule:after {
 
 label {
     font-weight: 400;
-    color: gray;
 }
 
 hr {
-    /*border-top: 1px dashed #929292;*/
+    border-top: 1px dashed #ccc;
     border-top: 1px dashed #ccc;
 }
 
@@ -361,6 +366,10 @@ navbar-inverse .navbar-nav>.open>a:hover {
   z-index: auto;
 }
 
+.item-group .form-control {
+  border: none;
+}
+
 .form-control {
   border-radius: $border-radius;
   box-shadow: none;
@@ -370,8 +379,4 @@ navbar-inverse .navbar-nav>.open>a:hover {
 .form-control:focus {
   border-color: $first-color;
   box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba($first-color, .6);
-}
-
-.CodeMirror {
-  border: 1px solid $light-gray;
 }

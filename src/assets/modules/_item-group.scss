@@ -1,0 +1,18 @@
+.item-group {
+  margin-bottom: 1.25rem;
+  margin-top: 1.75rem;
+  padding: 1.25rem;
+  background-color: rgba($darkturquoise, 0.09);
+  border-top: 3px solid #b6eaed;
+
+  h4 {
+    font-weight: 700;
+    font-size: 1rem;
+    margin-top: 0;
+    margin-bottom: 1.25rem;
+  }
+}
+
+.item-group + .item-group {
+  //margin: 0;
+}

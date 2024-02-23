@@ -12,4 +12,4 @@ export default {
   RouterView
 </template>
 
-<style scoped></style>
+<style></style>
