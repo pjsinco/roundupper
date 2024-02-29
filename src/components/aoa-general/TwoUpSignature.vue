@@ -91,8 +91,6 @@ export default {
       }
     });
 
-    console.log('ok');
-
     const renderer = mdRendererForAoaGeneral();
 
     marked.use({ renderer });
@@ -153,8 +151,6 @@ export default {
       sig2Spacer.value.addEventListener('mouseup', handleMouseup);
     });
 
-    console.log('hiya');
-
     return {
       sig1Image,
       sig2Image,
@@ -173,6 +169,8 @@ export default {
       showGuides,
       canShowGuides,
       guideEl,
+      copy,
+      copyTextVersion,
     };
   },
 };
