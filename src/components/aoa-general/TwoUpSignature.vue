@@ -2,7 +2,7 @@
 import { nextTick, ref, computed, onMounted, watch } from 'vue';
 import Workspace from '@/components/Workspace.vue';
 import { copyHtml, copyText } from '@/composables/useButtonFunctions';
-import { mdRendererForAoaGeneral } from '@/composables/useMdRendererForAoaGeneral';
+import { useRendererForAoaGeneral } from '@/composables/renderer-aoa-general';
 import { editorFromTextArea } from '@/composables/useEditorFromTextArea';
 import * as CodeMirror from 'codemirror';
 import 'codemirror/lib/codemirror.css';
@@ -91,7 +91,7 @@ export default {
       }
     });
 
-    const renderer = mdRendererForAoaGeneral();
+    const { renderer } = useRendererForAoaGeneral();
 
     marked.use({ renderer });
 

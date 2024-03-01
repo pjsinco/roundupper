@@ -3,7 +3,7 @@ import { nextTick, ref, computed, onMounted } from 'vue';
 import Workspace from '@/components/Workspace.vue';
 import { copyHtml, copyText } from '@/composables/useButtonFunctions';
 import { find } from 'lodash-es';
-import { mdRendererForAoaGeneral } from '@/composables/useMdRendererForAoaGeneral';
+import { useRendererForAoaGeneral } from '@/composables/renderer-aoa-general';
 import * as CodeMirror from 'codemirror';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/mode/markdown/markdown';
@@ -21,7 +21,7 @@ export default {
       'https://resources.osteopathic.org/l/979203/2024-02-01/czs3n/979203/17067972618vJSBE23/placeholder_100px.png';
     const defaultInput = `**Lorem ipsum dolor** sit amet, consectetur adipisicing elit, sed do eiusmod [tempor incididunt](https://osteopathic.org) ut labore et dolore magna aliqua.\n`;
 
-    const renderer = mdRendererForAoaGeneral();
+    const { renderer } = useRendererForAoaGeneral();
 
     let currId = 0;
 
@@ -139,7 +139,6 @@ export default {
 
 <style lang="scss">
 @import './../../assets/_variables.scss';
-
 
 .delete {
   cursor: pointer;

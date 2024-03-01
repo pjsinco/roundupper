@@ -15,3 +15,6 @@ pandoc \
 ~/Desktop/deans.docx \
 -o ~/Desktop/deans.md
 ```
+
+### Fri Mar  1 09:34:03 2024 CST
+* [Extended Syntax | Markdown Guide](https://www.markdownguide.org/extended-syntax/#heading-ids)

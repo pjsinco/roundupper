@@ -2,7 +2,7 @@
 import { ref, computed, onMounted } from 'vue';
 import Workspace from '@/components/Workspace.vue';
 import { copyHtml, copyText } from '@/composables/useButtonFunctions';
-import { mdRendererForAoaGeneral } from '@/composables/useMdRendererForAoaGeneral';
+import { useRendererForAoaGeneral } from '@/composables/renderer-aoa-general';
 import { editorFromTextArea } from '@/composables/useEditorFromTextArea';
 import { marked } from 'marked';
 
@@ -18,7 +18,7 @@ export default {
     const input = ref(defaultInput);
     const centerText = ref(false);
 
-    const renderer = mdRendererForAoaGeneral();
+    const { renderer } = useRendererForAoaGeneral();
 
     marked.use({ renderer });
 
