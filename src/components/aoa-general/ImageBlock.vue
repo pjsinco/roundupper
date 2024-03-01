@@ -22,6 +22,7 @@ export default {
     const selectedAlign = ref('center');
     const spaceAbove = ref(true);
     const spaceBelow = ref(true);
+    const bleed = ref(false);
     const caption = ref('Lorem ipsum dolor');
     const altText = ref('');
     const displayWidth = ref(253);
@@ -33,6 +34,7 @@ export default {
       spaceBelow.value = true;
       caption.value = 'Lorem ipsum dolor';
       displayWidth.value = 253;
+      bleed.value = false;
     };
 
     function copy() {
@@ -46,12 +48,23 @@ export default {
     const spacingStyle = computed(() => {
       return {
         paddingTop: spaceAbove.value ? '24px' : '0',
-        paddingRight: '36px',
+        paddingRight: bleed.value ? '0' : '36px',
         paddingBottom: spaceBelow.value ? '24px' : '0',
-        paddingLeft: '36px',
+        paddingLeft: bleed.value ? '0' : '36px',
         direction: 'ltr',
         fontSize: '0px',
         textAlign: 'center',
+      };
+    });
+
+    const captionTdStyle = computed(() => {
+      return {
+        fontSize: '0px',
+        paddingTop: '8px',
+        paddingLeft: bleed.value ? '36px' : '0',
+        paddingRight: bleed.value ? '36px' : '0',
+        paddingBottom: '0',
+        wordBreak: 'break-word',
       };
     });
 
@@ -80,11 +93,12 @@ export default {
     return {
       displayWidth,
       displayWidthNumber,
-
+      bleed,
       altText,
       caption,
       spacingStyle,
       captionStyle,
+      captionTdStyle,
       alignOptions,
       imageUrl,
       selectedAlign,
