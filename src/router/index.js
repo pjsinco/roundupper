@@ -1,8 +1,20 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../pages/Home.vue';
 import TheDO from '../pages/TheDO.vue';
-import Affiliates from '../pages/Affiliates.vue';
+import AffiliateNews from '../pages/AffiliateNews.vue';
 import AoaGeneral from '../pages/AoaGeneral.vue';
+
+const navigateToDefault = function (basePath, defaultPath) {
+  return (to, _from) => {
+    if (to.path === basePath) {
+      return {
+        name: defaultPath,
+      };
+    }
+  };
+};
+
+const thedoRedirect = navigateToDefault('/the-do', 'Date');
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -16,7 +28,7 @@ const router = createRouter({
       path: '/the-do',
       name: 'The DO',
       component: () => import('../pages/TheDO.vue'),
-      redirect: '/the-do/date',
+      beforeEnter: navigateToDefault('/the-do', 'Date'),
       children: [
         {
           path: 'top-story',
@@ -36,10 +48,10 @@ const router = createRouter({
       ],
     },
     {
-      path: '/affiliates',
-      name: 'Affiliates',
-      component: Affiliates,
-      redirect: '/affiliates/news-item',
+      path: '/affiliate-news',
+      name: 'Affiliate News',
+      component: AffiliateNews,
+      beforeEnter: navigateToDefault('/affiliate-news', 'News Item'),
       children: [
         {
           path: 'news-item',
@@ -53,9 +65,9 @@ const router = createRouter({
             import('../components/affiliates/NewsItemWithImage.vue'),
         },
         {
-          path: 'header',
-          name: 'Affiliates Header',
-          component: () => import('../components/affiliates/Header.vue'),
+          path: 'section-head',
+          name: 'Section Head',
+          component: () => import('../components/affiliates/SectionHead.vue'),
         },
       ],
     },
@@ -63,7 +75,7 @@ const router = createRouter({
       path: '/aoa-general',
       name: 'AOA General',
       component: AoaGeneral,
-      redirect: '/aoa-general/text',
+      beforeEnter: navigateToDefault('/aoa-general', 'Text'),
       children: [
         {
           path: 'text',

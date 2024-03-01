@@ -1,29 +1,28 @@
 <script>
 import { ref } from 'vue';
-
 import Navbar from '@/components/Navbar.vue';
+import NavOptions from '@/components/NavOptions.vue';
 import SelectTemplate from '@/components/SelectTemplate.vue';
-import { useRoute, useRouter, RouterView } from 'vue-router';
+import { RouterView } from 'vue-router';
 import { toastClose } from '@/composables/useToast';
-//import { handleTemplateSelect } from '@/composables/useHandleTemplateSelect';
+import { useNavigation } from '@/composables/navigation';
 
 export default {
   components: {
     Navbar,
+    NavOptions,
     SelectTemplate,
     RouterView,
   },
 
   setup() {
-    const route = useRoute();
-    const router = useRouter();
-
-    const handleTemplateSelect = (path) => {
-      router.push(path);
-    };
+    const { handleTemplateSelect, childRoutes, activePath } =
+      useNavigation('/aoa-general/');
 
     return {
       handleTemplateSelect,
+      childRoutes,
+      activePath,
     };
   },
 };
@@ -33,14 +32,8 @@ export default {
 div.blank
   navbar(templateName="AoaGeneral")
     template(v-slot:select)
-      select-template(v-on:template-selected="handleTemplateSelect")
-        option(value="/aoa-general/text") Text
-        option(value="/aoa-general/button") Button
-        option(value="/aoa-general/header") Header
-        option(value="/aoa-general/spacer") Spacer
-        option(value="/aoa-general/icon-list") Icon list
-        option(value="/aoa-general/image-block") Image Block
-        option(value="/aoa-general/two-up-signature") Two Up Signature
+      SelectTemplate(v-on:template-selected="handleTemplateSelect")
+        NavOptions(:routes="childRoutes" :active-path="activePath")
     transition(name="fade" appear mode="out-in")
       component(v-bind:is="currentTemplate" v-bind:current-template="currentTemplate")
   RouterView

@@ -1,8 +1,5 @@
 template(v-slot:form)
   div
-    //-div.form-group
-    //-  label(for="imageUrl") Image URL
-    //-  input(type="text" id="imageUrl" v-model="imageUrl").form-control
     div.form-group
       select(v-model="selected").form-control
         option(v-for="header in headers" :selected="selected.short == header.short" :value="header.short" :key="header.short") {{ header.name }}
