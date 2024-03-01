@@ -47,7 +47,7 @@ export function useRendererForAoaGeneral() {
             'line-height: 28px;',
             'text-align: left',
           ];
-          return `<h4 style="${h3Styles.join('; ')}">${text}</h4>\n`;
+          return `<h3 style="${h3Styles.join('; ')}">${text}</h3>\n`;
           break;
 
         case 4:
