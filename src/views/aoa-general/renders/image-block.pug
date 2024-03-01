@@ -17,7 +17,7 @@ template(v-slot:render-container)
                               td(:style="{ width: displayWidthNumber + 'px' }")
                                 img(:src="imageUrl" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" :width="displayWidthNumber" height="auto")
                     tr(v-if="caption != ''")
-                      td(:align="selectedAlign" style="font-size:0px;padding:8px 0 0 0;word-break:break-word;")
+                      td(:align="selectedAlign" :style="captionTdStyle")
                         div(:style="captionStyle")
                           | {{ caption }}
               <!--[if mso | IE]></td></tr></table><![endif]-->

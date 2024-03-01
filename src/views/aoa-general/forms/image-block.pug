@@ -17,8 +17,8 @@ template(v-slot:form)
     div.col-xs-6
       div.form-group(style="margin-bottom: 0;")
         label(for="displayWidth") Display width (in pixels)
-        input(type="text" id="displayWidth" v-model="displayWidth").form-control
-        p.help-block Full display width: 528px
+        input(type="number" min="100" max="600" id="displayWidth" v-model="displayWidth").form-control
+        p.help-block Full-width: 528px
 
   div.row
     div.col-xs-12
@@ -37,6 +37,11 @@ template(v-slot:form)
           label
             input(type="checkbox" name="spaceBelow" v-model="spaceBelow")
             | Space below
+        div.checkbox-inline.pull-right
+          label
+            input(type="checkbox" name="bleed" v-model="bleed")
+            | Bleed
+
 
   div.row
     div.col-xs-12
