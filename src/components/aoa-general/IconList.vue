@@ -8,6 +8,7 @@ import * as CodeMirror from 'codemirror';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/mode/markdown/markdown';
 import { marked } from 'marked';
+import Constants from '@/constants/aoa-general';
 
 export default {
   components: {
@@ -17,9 +18,8 @@ export default {
   props: ['currentTemplate'],
 
   setup(props) {
-    const defaultImageUrl =
-      'https://resources.osteopathic.org/l/979203/2024-02-01/czs3n/979203/17067972618vJSBE23/placeholder_100px.png';
-    const defaultInput = `**Lorem ipsum dolor** sit amet, consectetur adipisicing elit, sed do eiusmod [tempor incididunt](https://osteopathic.org) ut labore et dolore magna aliqua.\n`;
+    const defaultImageUrl = Constants.DEFAULT_HEADER_URL;
+    const defaultInput = Constants.DEFAULT_TEXT_MARKDOWN;
 
     const { renderer } = useRendererForAoaGeneral();
 
@@ -55,8 +55,6 @@ export default {
 
     const items = ref(getDefaultItems());
 
-    console.log('items.value[0]', items.value[0]);
-
     marked.use({ renderer });
 
     marked.setOptions({
@@ -65,7 +63,7 @@ export default {
     });
 
     const reset = () => {
-      items.value = getDefaultItems();
+      window.location.reload();
     };
 
     function copy() {

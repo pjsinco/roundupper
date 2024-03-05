@@ -138,6 +138,10 @@ export default {
       copyText();
     }
 
+    function reset() {
+      window.location.reload();
+    }
+
     onMounted(() => {
       initEditors();
 
@@ -171,6 +175,7 @@ export default {
       guideEl,
       copy,
       copyTextVersion,
+      reset,
     };
   },
 };
