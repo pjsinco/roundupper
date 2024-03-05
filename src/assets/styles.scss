@@ -326,9 +326,9 @@ body {
   color: $second-color;
 }
 
-navbar-inverse .navbar-nav>.open>a,
-navbar-inverse .navbar-nav>.open>a:focus,
-navbar-inverse .navbar-nav>.open>a:hover {
+.navbar-inverse .navbar-nav>.open>a,
+.navbar-inverse .navbar-nav>.open>a:focus,
+.navbar-inverse .navbar-nav>.open>a:hover {
   background-color: darken($light-gray, 4%);
   border-color: darken($light-gray, 4%);
 }
