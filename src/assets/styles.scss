@@ -27,7 +27,7 @@ body {
 
 }
 
-body:after {
+.blank:after {
   content: "";
   position: fixed;
   top: 0;
@@ -39,7 +39,7 @@ body:after {
   background-color: #d0d0d0;
 }
 
-body.no-rule:after {
+.blank.no-rule:after {
   background-color: transparent;
 }
 

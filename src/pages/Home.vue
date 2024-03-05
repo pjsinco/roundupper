@@ -1,5 +1,5 @@
 <script>
-import { ref } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 import Navbar from '@/components/Navbar.vue';
 import { useRouter } from 'vue-router';
 import { useParentRoutes } from '@/composables/useParentRoutes';
@@ -18,6 +18,14 @@ export default {
     };
 
     const selectedRoute = ref(routes[0].path);
+
+    onMounted(() => {
+      document.querySelector('.blank').classList.add('no-rule');
+    });
+
+    onUnmounted(() => {
+      document.querySelector('.blank').classList.remove('no-rule');
+    });
 
     return {
       routes,

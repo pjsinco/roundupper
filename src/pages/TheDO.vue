@@ -34,7 +34,7 @@ div.blank
     template(v-slot:select)
       SelectTemplate(v-on:template-selected="handleTemplateSelect")
         NavOptions(:routes="childRoutes" :active-path="activePath")
-    transition(name="fade" appear mode="out-in")
+    Transition(name="fade" appear mode="out-in")
       component(v-bind:is="currentTemplate" v-bind:current-template="currentTemplate")
   RouterView
 
