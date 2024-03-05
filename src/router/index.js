@@ -108,11 +108,11 @@ const router = createRouter({
           component: () =>
             import('../components/aoa-general/TwoUpSignature.vue'),
         },
-        {
-          path: 'spacer',
-          name: 'Spacer',
-          component: () => import('../components/aoa-general/Spacer.vue'),
-        },
+        //{
+        //path: 'spacer',
+        //name: 'Spacer',
+        //component: () => import('../components/aoa-general/Spacer.vue'),
+        //},
       ],
     },
   ],

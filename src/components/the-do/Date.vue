@@ -1,7 +1,7 @@
 <script>
 import { reactive } from 'vue';
 import Workspace from '@/components/Workspace.vue';
-import { reset, copyHtml, copyText } from '@/composables/useButtonFunctions';
+import { copyHtml, copyText } from '@/composables/useButtonFunctions';
 
 export default {
   components: {
@@ -34,7 +34,7 @@ export default {
       date: `${apMonths[month]} ${day}, ${year}`,
     };
 
-    const state = reactive({ ...initialState });
+    let state = reactive({ ...initialState });
 
     function copy() {
       copyHtml();
@@ -48,6 +48,10 @@ export default {
       ].join('\n');
 
       return copyText(text);
+    }
+
+    function reset() {
+      state.date = initialState.date;
     }
 
     return {
