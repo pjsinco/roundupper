@@ -3,7 +3,6 @@ import * as CodeMirror from 'codemirror';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/mode/markdown/markdown';
 import { mdRendererForAoaGeneral } from '@/composables/useMdRendererForAoaGeneral';
-import { debounce } from 'lodash-es';
 import { ref, computed, onMounted } from 'vue';
 
 export default function getMarkdownEditor(id) {

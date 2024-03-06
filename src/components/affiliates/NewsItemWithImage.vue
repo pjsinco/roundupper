@@ -4,7 +4,6 @@ import Workspace from '@/components/Workspace.vue';
 import { getRenderer } from '@/composables/useMdRendererForAffiliates';
 import { editorFromTextArea } from '@/composables/useEditorFromTextArea';
 import { copyHtml, copyText } from '@/composables/useButtonFunctions';
-import { debounce } from 'lodash-es';
 import { marked } from 'marked';
 
 export default {

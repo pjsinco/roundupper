@@ -1,7 +1,8 @@
 <script>
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
 import Workspace from '@/components/Workspace.vue';
 import { copyHtml, copyText } from '@/composables/useButtonFunctions';
+import { debounce } from 'lodash-es';
 
 export default {
   components: {
@@ -81,13 +82,36 @@ export default {
 
     const displayWidthNumber = computed(() => {
       const regex = /(\d+)/gm;
-      console.log('displayWidth.value', displayWidth.value);
+
       const matches = `${displayWidth.value}`.match(regex);
       if (matches) {
         return matches[0];
       }
 
       return null;
+    });
+
+    function constrainWidth(newWidth) {
+      if (bleed.value) {
+        if (newWidth > 600) {
+          displayWidth.value = 600;
+        }
+      } else {
+        if (newWidth > 528) {
+          displayWidth.value = 528;
+        }
+      }
+    }
+
+    // make sure we don't go over 600
+    watch(displayWidth, debounce(constrainWidth, 250));
+
+    watch(bleed, (newVal) => {
+      if (!bleed.value) {
+        if (displayWidth.value > 528) {
+          displayWidth.value = 528;
+        }
+      }
     });
 
     return {
