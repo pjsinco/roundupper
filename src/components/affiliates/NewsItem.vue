@@ -26,7 +26,7 @@ export default {
 
     function initEditor() {
       const el = document.getElementById('input');
-      const editor = editorFromTextArea(input, el, 'calc(100vh - 275px)');
+      const editor = editorFromTextArea(input, el, 'calc(100vh - 400px)');
     }
 
     onMounted(initEditor);

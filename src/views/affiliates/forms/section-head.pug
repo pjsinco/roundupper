@@ -1,7 +1,9 @@
 template(v-slot:form)
+  h1.component__title Section head
   div
     div.form-group
-      select(v-model="selected").form-control
+      label(for="select") Section head
+      select(id="select" v-model="selected").form-control
         option(v-for="header in headers" :selected="selected.short == header.short" :value="header.short" :key="header.short") {{ header.name }}
 
   include ../../includes/copy-buttons
