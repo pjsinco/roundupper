@@ -28,7 +28,8 @@ export default {
   nav.navbar.navbar-inverse#nav
     div.container-fluid
       div.navbar-header
-        a.navbar-brand(href="/") Roundupper
+        router-link.navbar-brand(to="/") Roundupper
+
       
       div.navbar-center
         slot(name="select")
