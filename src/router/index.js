@@ -30,16 +30,16 @@ const router = createRouter({
       component: () => import('../pages/TheDO.vue'),
       beforeEnter: navigateToDefault('/the-do', 'Date'),
       children: [
-        {
-          path: 'top-story',
-          name: 'Top Story',
-          component: () => import('../components/the-do/TopStory.vue'),
-        },
-        {
-          path: 'feature',
-          name: 'Feature',
-          component: () => import('../components/the-do/Feature.vue'),
-        },
+        //        {
+        //          path: 'top-story',
+        //          name: 'Top story',
+        //          component: () => import('../components/the-do/TopStory.vue'),
+        //        },
+        //        {
+        //          path: 'feature',
+        //          name: 'Feature',
+        //          component: () => import('../components/the-do/Feature.vue'),
+        //        },
         {
           path: 'date',
           name: 'Date',
@@ -51,22 +51,22 @@ const router = createRouter({
       path: '/affiliate-news',
       name: 'Affiliate News',
       component: AffiliateNews,
-      beforeEnter: navigateToDefault('/affiliate-news', 'News Item'),
+      beforeEnter: navigateToDefault('/affiliate-news', 'News item'),
       children: [
         {
           path: 'news-item',
-          name: 'News Item',
+          name: 'News item',
           component: () => import('../components/affiliates/NewsItem.vue'),
         },
         {
           path: 'news-item-with-image',
-          name: 'News Item With Image',
+          name: 'News item with image',
           component: () =>
             import('../components/affiliates/NewsItemWithImage.vue'),
         },
         {
           path: 'section-head',
-          name: 'Section Head',
+          name: 'Section head',
           component: () => import('../components/affiliates/SectionHead.vue'),
         },
       ],
@@ -94,17 +94,17 @@ const router = createRouter({
         },
         {
           path: 'icon-list',
-          name: 'Icon List',
+          name: 'Icon list',
           component: () => import('../components/aoa-general/IconList.vue'),
         },
         {
           path: 'image-block',
-          name: 'Image Block',
+          name: 'Image block',
           component: () => import('../components/aoa-general/ImageBlock.vue'),
         },
         {
           path: 'two-up-signature',
-          name: 'Two-Up Signature',
+          name: 'Two-up signature',
           component: () =>
             import('../components/aoa-general/TwoUpSignature.vue'),
         },

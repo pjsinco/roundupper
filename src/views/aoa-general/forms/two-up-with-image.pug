@@ -1,5 +1,5 @@
 template(v-slot:form)
-  h1.component__title Two-Up Signature
+  h1.component__title Two-up signature
 
   div.item-group
     h4 Signature 1
@@ -11,7 +11,7 @@ template(v-slot:form)
       textarea(id="sig1Input" v-model="sig1Input" rows="4").form-control
       //- p.help-block Markdown
     div.form-group
-      label(for="sig1ImageWidth") Image Size
+      label(for="sig1ImageWidth") Image size
       input(
         type="range"
         max="252"
@@ -23,7 +23,7 @@ template(v-slot:form)
         @input="showGuides = true"
       ).form-control
     div.form-group
-      label(for="sig1Spacer") Image Spacer
+      label(for="sig1Spacer") Image spacer
       input(
         type="range"
         max="100"
@@ -45,7 +45,7 @@ template(v-slot:form)
       textarea(id="sig2Input" v-model="sig2Input" rows="4").form-control
       //- p.help-block Markdown
     div.form-group
-      label(for="sig2ImageWidth") Image Size
+      label(for="sig2ImageWidth") Image size
       input(
         type="range"
         max="252"
@@ -57,7 +57,7 @@ template(v-slot:form)
         @input="showGuides = true"
       ).form-control
     div.form-group
-      label(for="sig2Spacer") Image Spacer
+      label(for="sig2Spacer") Image spacer
       input(
         type="range"
         max="100"
@@ -76,6 +76,6 @@ template(v-slot:form)
         div.checkbox-inline
           label(:class="{ disabled: !canShowGuides }")
             input(type="checkbox" name="showGuides" v-model="showGuides" :disabled="!canShowGuides")
-            | Show Guide
+            | Show guide
 
   include ../../includes/copy-buttons

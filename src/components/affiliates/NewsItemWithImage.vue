@@ -38,7 +38,7 @@ export default {
 
     function initEditor() {
       const el = document.getElementById('input');
-      const editor = editorFromTextArea(input, el, '300px');
+      const editor = editorFromTextArea(input, el, '250px');
     }
 
     onMounted(initEditor);

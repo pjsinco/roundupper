@@ -1,5 +1,5 @@
 template(v-slot:form)
-  h1 News item with image
+  h1.component__title News item with image
   div.form-group
     label(for="headline") Headline
     input(type="text" id="headline" v-model="headline").form-control
@@ -13,7 +13,7 @@ template(v-slot:form)
     input(type="text" id="imageUrl" v-model="imageUrl").form-control
 
   div.form-group
-    label(for="altText") Alt Text
+    label(for="altText") Alt text
     input(type="text" id="altText" v-model="altText").form-control
 
   include ../../includes/copy-buttons
