@@ -1,7 +1,6 @@
 <script>
 import { ref, onMounted } from 'vue';
 
-
 export default {
   props: ['link', 'text'],
 

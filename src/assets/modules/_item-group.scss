@@ -2,8 +2,8 @@
   margin-bottom: 1.25rem;
   margin-top: 1.75rem;
   padding: 1.25rem;
-  background-color: rgba($darkturquoise, 0.09);
-  border-top: 3px solid #b6eaed;
+  background-color: var(--tint-secondary-light);
+  border-top: 3px solid var(--tint-secondary);
 
   h4 {
     font-weight: 700;
