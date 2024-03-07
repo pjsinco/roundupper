@@ -1,18 +1,14 @@
-$first-color: #1ccacd;
-//$second-color: #e40066;
-$second-color: #ff3366;
-$third-color: #8a1c7c;
-$font-color-light: #888;
-$light-gray: #f3f3f3;
-$dark-gray: #4a4a4a;
-$border-radius: 1px;
-
 @import './variables';
 @import 'animate.css';
 @import './modules/component';
 @import './modules/item-group';
 @import './modules/tooltipped';
 @import './modules/toast';
+
+
+:root {
+  --primary-color: #7d1aba;
+}
 
 html {
   font-size: 16px;

@@ -1,5 +1,6 @@
 import { popUpToast } from '@/composables/useToast';
 import 'animate.css';
+import Constants from '@/constants/app';
 
 function reset() {
   const reset = () => {
@@ -11,7 +12,7 @@ function clipboardSuccess(
   el,
   title = 'Copied!',
   message = 'Ready to paste',
-  color = '#1ccacd'
+  color = Constants.PRIMARY_COLOR
 ) {
   const rendered = document.getElementById('rendered');
   rendered.classList.add('animate__animated', 'animate__jello');
@@ -71,7 +72,7 @@ function copyHtml(manipulate = (html) => html) {
       document.getElementById('copyHtml'),
       'HTML code copied',
       'The HTML code is copied to your clipboard. Ready to paste!',
-      '#ff3366'
+      Constants.PRIMARY_COLOR
     );
     clipboard.destroy();
   });
@@ -87,7 +88,7 @@ function copyText(text) {
       document.getElementById('copyTextVersion'),
       'Text version copied',
       'The text version is copied to your clipboard. Ready to paste!',
-      '#1ccacd'
+      Constants.SECONDARY_COLOR
     );
     clipboard.destroy();
   });
