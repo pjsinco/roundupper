@@ -1,5 +1,6 @@
 <script>
 import { nextTick, ref, computed, onMounted, watch } from 'vue';
+
 import Workspace from '@/components/Workspace.vue';
 import { copyHtml, copyText } from '@/composables/useButtonFunctions';
 import { useRendererForAoaGeneral } from '@/composables/renderer-aoa-general';

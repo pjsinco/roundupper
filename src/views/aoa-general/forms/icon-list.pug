@@ -18,7 +18,7 @@ template(v-slot:form)
         textarea(:id="'input-' + item.id" v-model="item.input" rows="4").form-control
         //- p.help-block Markdown
 
-  div.form-group
-    button(@click="handleAdd").btn.btn-default.pull-right Add item
+  div.form-group.clearfix
+    button(@click="handleAdd").btn.btn-sm.btn-default.pull-right Add item
 
-  include ../../includes/copy-buttons
+  include ../../includes/copy-button
