@@ -23,6 +23,7 @@ export default {
       handleTemplateSelect,
       childRoutes,
       activePath,
+      toastClose,
     };
   },
 };
