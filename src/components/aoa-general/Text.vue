@@ -3,6 +3,7 @@ import { ref, computed, onMounted } from 'vue';
 
 import Workspace from '@/components/Workspace.vue';
 import { copyHtml, copyText } from '@/composables/useButtonFunctions';
+import { useWysiwyg } from '@/composables/wysiwyg';
 import { useRendererForAoaGeneral } from '@/composables/renderer-aoa-general';
 import { useEditorFromTextArea } from '@/composables/useEditorFromTextArea';
 import { marked } from 'marked';
@@ -15,10 +16,11 @@ export default {
   props: ['currentTemplate'],
 
   setup(props) {
-    const defaultInput = `# Lorem ipsum dolor sit amet\nConsectetur adipisicing **elit**, sed do *eiusmod* [tempor incididunt](https://osteopathic.org) ut labore et dolore magna aliqua.\n`;
+    const defaultInput = `# Lorem ipsum dolor sit amet\nConsectetur adipisicing **elit**, sed do *eiusmod* [tempor incididunt](https://osteopathic.org) ut labore et dolore magna aliqua.`;
     const input = ref(defaultInput);
     const centerText = ref(false);
     let editor = null;
+    const { makeLink, makeBold, makeItalic } = useWysiwyg();
 
     const { renderer } = useRendererForAoaGeneral();
 
@@ -47,6 +49,7 @@ export default {
     function initEditor() {
       const el = document.getElementById('input');
       editor = useEditorFromTextArea(input, el, 'calc(100vh - 425px)');
+      console.log((window.ml = makeLink));
     }
 
     function copy() {
@@ -59,39 +62,19 @@ export default {
 
     function reset() {
       input.value = defaultInput;
+      editor.setValue(input.value);
     }
 
-    function makeLink(evt) {
-      const selection = editor.getSelection();
-      const { line, ch } = editor.getCursor('anchor');
+    function handleMakeLink() {
+      makeLink(editor);
+    }
 
-      // Make sure there are no new-lines in selection
-      if (selection.indexOf('\n') > 0) {
-        return;
-      }
+    function handleMakeBold() {
+      makeBold(editor);
+    }
 
-      // Check immediately-surrounding chars to see if
-      // they're [ && ], which would mean there's already
-      // a link there.
-      const linkCheckRange = editor.getRange(
-        { line, ch: ch - 1 },
-        { line, ch: ch + selection.length + 1 }
-      );
-      const firstChar = linkCheckRange.charAt(0);
-      const lastChar = linkCheckRange.charAt(linkCheckRange.length - 1);
-      if (firstChar == '[' && lastChar == ']') {
-        return;
-      }
-
-      const startOfStrToHighlight = ch + selection.length + ']('.length + 1;
-      const endOfStrToHighlight = startOfStrToHighlight + 'url'.length;
-
-      editor.replaceSelection('[' + selection + '](url)');
-      editor.setSelection(
-        { line, ch: startOfStrToHighlight },
-        { line, ch: endOfStrToHighlight }
-      );
-      editor.focus();
+    function handleMakeItalic() {
+      makeItalic(editor);
     }
 
     onMounted(initEditor);
@@ -106,7 +89,9 @@ export default {
       reset,
       copy,
       copyTextVersion,
-      makeLink,
+      handleMakeLink,
+      handleMakeBold,
+      handleMakeItalic,
     };
   },
 };

@@ -14,11 +14,13 @@ template(v-slot:form)
 
   div.row
     div.col-xs
-      div.form-group
-        button(@click="makeLink").btn.btn-sm.btn-default
+      div.btn-group
+        button(@click="handleMakeLink").btn.btn-sm.btn-default
           span.glyphicon.glyphicon-link
-        button(@click="makeBold").btn.btn-sm.btn-default
-          span.glyphicon.glyphicon-link
-            | &nbsp; B
+        button(@click="handleMakeBold").btn.btn-sm.btn-default
+          span
+            | B
+        button(@click="handleMakeItalic").btn.btn-sm.btn-default
+          span #[em I]
 
   include ../../includes/copy-button
