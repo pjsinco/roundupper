@@ -20,7 +20,7 @@ export default {
     const input = ref(defaultInput);
     const centerText = ref(false);
     let editor = null;
-    const { makeLink, makeBold, makeItalic } = useWysiwyg();
+    const { makeLink, makeBold, makeItalic, makeFontStyle } = useWysiwyg();
 
     const { renderer } = useRendererForAoaGeneral();
 
@@ -70,11 +70,13 @@ export default {
     }
 
     function handleMakeBold() {
-      makeBold(editor);
+      makeFontStyle(editor, 'bold');
+      //makeBold(editor);
     }
 
     function handleMakeItalic() {
-      makeItalic(editor);
+      makeFontStyle(editor, 'italic');
+      //makeItalic(editor);
     }
 
     onMounted(initEditor);
