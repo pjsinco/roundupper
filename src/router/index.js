@@ -127,6 +127,11 @@ const router = createRouter({
           name: 'News item',
           component: () => import('../components/newsletter/NewsItem.vue'),
         },
+        {
+          path: 'toc',
+          name: 'TOC',
+          component: () => import('../components/newsletter/Toc.vue'),
+        },
       ],
     },
   ],
