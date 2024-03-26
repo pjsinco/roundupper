@@ -1,0 +1,8 @@
+template(v-slot:form)
+  h1.component__title Table of contents
+
+  div.form-group
+    label(for="urlToFetch") Browser version URL
+    input(id="urlToFetch" v-model="urlToFetch").form-control
+  div.form-group.clearfix
+    button(@click="handleSubmit").btn.btn-sm.btn-default.pull-right Generate TOC
