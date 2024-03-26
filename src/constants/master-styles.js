@@ -31,5 +31,8 @@ export const base = {
     text: colors.black,
     link: colors.teal,
     background: colors.warm,
+    primary: colors.navy,
+    secondary: colors.teal,
+    accent: colors.seaSerpent,
   },
 };

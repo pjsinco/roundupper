@@ -7,12 +7,19 @@ import { useAoaGeneralRenders } from '@/composables/styles-base-aoa-general';
  *
  */
 export function useRendererForNewsletter() {
-  const { paragraph, link, list } = useAoaGeneralRenders();
+  const { paragraph, list } = useAoaGeneralRenders();
 
   const renderer = {
     paragraph,
-    link,
     list,
+
+    link(href, title, text) {
+      const linkStyle = Constants.Styles.LINK_STYLE;
+      return `
+        <a href="${href}" 
+           style="${linkStyle.join('; ')}"
+           title="${title}">${text}</a>`;
+    },
 
     heading(text, level) {
       switch (level) {

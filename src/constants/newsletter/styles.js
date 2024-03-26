@@ -1,6 +1,6 @@
 import { base } from '@/constants/master-styles';
 import aoaStyles from '@/constants/aoa-general/styles';
-const { P_STYLE, H1_STYLE, LINK_STYLE } = aoaStyles;
+const { P_STYLE, H1_STYLE } = aoaStyles;
 
 const defaultHeadlineStyle = [
   'margin-bottom: 0px',
@@ -16,7 +16,11 @@ const defaultHeadlineStyle = [
 export default {
   P_STYLE,
   H1_STYLE,
-  LINK_STYLE,
+  LINK_STYLE: [
+    `color: ${base.colors.primary}`,
+    'font-weight: inherit',
+    'text-decoration: underline',
+  ],
   H2_STYLE: defaultHeadlineStyle,
   H3_STYLE: defaultHeadlineStyle,
   H4_STYLE: [
