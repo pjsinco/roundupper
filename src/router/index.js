@@ -3,6 +3,7 @@ import Home from '../pages/Home.vue';
 import TheDO from '../pages/TheDO.vue';
 import AffiliateNews from '../pages/AffiliateNews.vue';
 import AoaGeneral from '../pages/AoaGeneral.vue';
+import Newsletter from '../pages/Newsletter.vue';
 
 const navigateToDefault = function (basePath, defaultPath) {
   return (to, _from) => {
@@ -113,6 +114,29 @@ const router = createRouter({
         //name: 'Spacer',
         //component: () => import('../components/aoa-general/Spacer.vue'),
         //},
+      ],
+    },
+    {
+      path: '/newsletter',
+      name: 'Newsletter',
+      component: Newsletter,
+      beforeEnter: navigateToDefault('/newsletter', 'News item'),
+      children: [
+        {
+          path: 'news-item',
+          name: 'News item',
+          component: () => import('../components/newsletter/NewsItem.vue'),
+        },
+        {
+          path: 'toc',
+          name: 'TOC',
+          component: () => import('../components/newsletter/Toc.vue'),
+        },
+        {
+          path: 'button',
+          name: 'Button',
+          component: () => import('../components/aoa-general/Button.vue'),
+        },
       ],
     },
   ],

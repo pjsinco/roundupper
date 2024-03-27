@@ -1,0 +1,33 @@
+template(v-slot:form)
+  h1.component__title News item
+  div.form-group
+    label(for="headline") Headline (in Markdown)
+    textarea(id="headline" v-model="headline").form-control
+
+  div.form-group
+    label(for="input") Content (in Markdown)
+    textarea(id="input" v-model="input").form-control
+
+  div.row
+    div.col-xs
+      div.form-group
+        div.checkbox-inline
+          label(for="includeImage")
+            input(type="checkbox" name="includeImage" v-model="includeImage" )
+            | Include small image
+        div.checkbox-inline.pull-right
+          label(for="dividerAbove")
+            input(type="checkbox" name="dividerAbove" v-model="dividerAbove" )
+            | Include divider
+
+  template(v-if="includeImage")
+    div.form-group
+      label(for="imageUrl") Image URL
+      input(type="text" id="imageUrl" v-model="imageUrl").form-control
+      p.help-block Image will be 120px wide
+
+    div.form-group
+      label(for="caption") Caption
+      input(type="text" id="caption" v-model="caption").form-control
+
+  include ../../includes/copy-buttons
