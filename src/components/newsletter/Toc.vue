@@ -25,34 +25,18 @@ export default {
     });
 
     async function handleSubmit() {
-      // TODO for now
-      return;
+      const url = 'http://localhost:5001/toc';
 
-      const encodedUrl = encodeURIComponent(urlToFetch.value);
-      console.log('encodedUrl', encodedUrl);
-      const url = `https://corsproxy.io/?${encodedUrl}`;
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ url: urlToFetch.value }),
+      });
+      const body = await response.text();
 
-      fetch(url, {
-        method: 'GET',
-        mode: 'no-cors',
-        //headers: {
-        //  'Content-Type': 'text/html',
-        //},
-      })
-        .then((res) => {
-          return res.text();
-        })
-        .then((text) => {
-          console.log('text', text);
-        })
-        .catch((err) => {
-          console.error(err);
-        });
-
-      // const bookmarks = document.querySelectorAll('a[id*="bookmark-"]');
-      // const makeLink = function(anchor) { return `* [${anchor.nextElementSibling.querySelector('h3').innerText}](#${anchor.id})`; };
-      // const links = Array.from(bookmarks).map(makeLink);
-      // console.log(links.join('\n'));
+      console.log(JSON.parse(body).data.join('\n'));
     }
 
     return {
