@@ -1,5 +1,6 @@
 <script>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
+
 import Workspace from '@/components/Workspace.vue';
 import { copyHtml, copyText } from '@/composables/useButtonFunctions';
 
@@ -13,6 +14,8 @@ export default {
   setup(props) {
     const text = ref('Learn more');
     const link = ref('');
+    const spaceAbove = ref(true);
+    const spaceBelow = ref(true);
 
     function copy() {
       // our inline style 'mso-padding-alt' gets stripped
@@ -44,8 +47,22 @@ export default {
       link.value = '';
     }
 
+    const buttonTdStyle = computed(() => {
+      return {
+        direction: 'ltr',
+        fontSize: '0px',
+        paddingTop: spaceAbove.value ? '20px' : '0',
+        paddingBottom: spaceBelow.value ? '20px' : '0',
+        paddingLeft: '0px',
+        textAlign: 'center',
+      };
+    });
+
     return {
       link,
+      spaceAbove,
+      spaceBelow,
+      buttonTdStyle,
       text,
       props,
       reset,
