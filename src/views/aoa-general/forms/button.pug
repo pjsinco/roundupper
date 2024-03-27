@@ -1,12 +1,28 @@
 template(v-slot:form)
-  h1.component__title Button
-  div(slot="form")
-    div.form-group
-      label(for="text") Button text
-      input(type="text" id="text" v-model="text").form-control
+  div.row
+    div.col-xs-12
+      h1.component__title Button
+  div.row
+    div.col-xs-12
+      div.form-group
+        label(for="text") Button text
+        input(type="text" id="text" v-model="text").form-control
 
-    div.form-group
-      label(for="link") Link
-      input(type="text" id="link" v-model="link").form-control
+      div.form-group
+        label(for="link") Link
+        input(type="text" id="link" v-model="link").form-control
 
-    include ../../includes/copy-button
+  div.row
+    div.col-xs-12
+      div.form-group
+        div.checkbox-inline
+          label
+            input(type="checkbox" name="spaceAbove" v-model="spaceAbove")
+            | Space above
+          label
+            input(type="checkbox" name="spaceBelow" v-model="spaceBelow")
+            | Space below
+
+  div.row
+    div.col-xs-12
+      include ../../includes/copy-button
