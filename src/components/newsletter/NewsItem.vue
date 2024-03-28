@@ -31,7 +31,8 @@ export default {
     const headline = ref(defaultHeadline);
     const imageUrl = ref(defaultImageUrl);
     const caption = ref('');
-    const includeImage = ref(false);
+    const includeImage = ref(true);
+    const includeButton = ref(true);
     const dividerAbove = ref(true);
     const bookmark = `bookmark-${Math.floor(1000 * Math.random() * 4000)}`;
 
@@ -88,6 +89,7 @@ export default {
       imageUrl,
       caption,
       includeImage,
+      includeButton,
       dividerAbove,
       imageTdStyle,
       bookmark,

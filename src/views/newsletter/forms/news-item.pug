@@ -22,14 +22,19 @@ template(v-slot:form)
           label(for="includeImage")
             input(type="checkbox" name="includeImage" v-model="includeImage" )
             | Include small image
-        div.checkbox-inline.pull-right
+        div.checkbox-inline
           label(for="dividerAbove")
             input(type="checkbox" name="dividerAbove" v-model="dividerAbove" )
             | Include divider
+        div.checkbox-inline
+          label(for="includeButton")
+            input(type="checkbox" name="includeButton" v-model="includeButton" )
+            | Include button
 
   div.row
     div.col-xs-12
-      template(v-if="includeImage")
+      div(v-if="includeImage").item-group
+        h4 Small image #[span(@click="handleDelete(item)").delete.pull-right &#x2715;]
         div.form-group
           label(for="imageUrl") Image URL
           input(type="text" id="imageUrl" v-model="imageUrl").form-control
