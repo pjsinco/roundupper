@@ -6,7 +6,5 @@ export function useParentRoutes() {
     .getRoutes()
     .filter((r) => r.name !== 'Home' && r.children.length > 0);
 
-  console.log('parentRoutes', parentRoutes);
-
   return parentRoutes;
 }
