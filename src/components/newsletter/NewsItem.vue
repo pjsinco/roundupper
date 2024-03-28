@@ -1,6 +1,8 @@
 <script>
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed, onMounted, nextTick } from 'vue';
 import Workspace from '@/components/Workspace.vue';
+import Tabs from '@/components/Tabs.vue';
+import Tab from '@/components/Tab.vue';
 import { useRendererForNewsletter } from '@/composables/renderer-newsletter';
 import { editorFromTextArea } from '@/composables/useEditorFromTextArea';
 import { copyHtml, copyText } from '@/composables/useButtonFunctions';
@@ -10,6 +12,8 @@ import Constants from '@/constants/newsletter';
 export default {
   components: {
     Workspace,
+    Tabs,
+    Tab,
   },
 
   props: ['currentTemplate'],
@@ -35,6 +39,7 @@ export default {
     const includeButton = ref(true);
     const dividerAbove = ref(true);
     const bookmark = `bookmark-${Math.floor(1000 * Math.random() * 4000)}`;
+    const tabRef = ref({});
 
     const output = computed(() => {
       return marked(input.value);
@@ -53,11 +58,13 @@ export default {
     });
 
     function initEditors() {
-      const textEl = document.getElementById('input');
-      const textEditor = editorFromTextArea(input, textEl, '350px');
+      nextTick(() => {
+        const textEl = document.getElementById('input');
+        const textEditor = editorFromTextArea(input, textEl, '350px');
 
-      const headlineEl = document.getElementById('headline');
-      const headlineEditor = editorFromTextArea(headline, headlineEl, '72px');
+        const headlineEl = document.getElementById('headline');
+        const headlineEditor = editorFromTextArea(headline, headlineEl, '72px');
+      });
     }
 
     onMounted(initEditors);
@@ -93,6 +100,7 @@ export default {
       dividerAbove,
       imageTdStyle,
       bookmark,
+      tabRef,
     };
   },
 };

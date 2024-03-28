@@ -3,46 +3,49 @@ template(v-slot:form)
     div.col-xs-12
       h1.component__title News item
 
-  div.row
-    div.col-xs-12
-      div.form-group
-        label(for="headline") Headline (in Markdown)
-        textarea(id="headline" v-model="headline").form-control
+  Tabs
+    Tab(title="Main")
+      div.row
+        div.col-xs-12
+          div.form-group
+            label(for="headline") Headline (in Markdown)
+            textarea(id="headline" v-model="headline").form-control
 
-  div.row
-    div.col-xs-12
-      div.form-group
-        label(for="input") Content (in Markdown)
-        textarea(id="input" v-model="input").form-control
+      div.row
+        div.col-xs-12
+          div.form-group
+            label(for="input") Content (in Markdown)
+            textarea(id="input" v-model="input").form-control
 
-  div.row
-    div.col-xs-12
-      div.form-group
-        div.checkbox-inline(style="padding-left: 0;")
-          label(for="includeImage")
-            input(type="checkbox" name="includeImage" v-model="includeImage" )
-            | Include small image
-        div.checkbox-inline
-          label(for="dividerAbove")
-            input(type="checkbox" name="dividerAbove" v-model="dividerAbove" )
-            | Include divider
-        div.checkbox-inline
-          label(for="includeButton")
-            input(type="checkbox" name="includeButton" v-model="includeButton" )
-            | Include button
+    Tab(title="Extras")
+      div.row
+        div.col-xs-12
+          div.form-group
+            div.checkbox-inline(style="padding-left: 0;")
+              label(for="includeImage")
+                input(type="checkbox" name="includeImage" v-model="includeImage" )
+                | Include small image
+            div.checkbox-inline
+              label(for="dividerAbove")
+                input(type="checkbox" name="dividerAbove" v-model="dividerAbove" )
+                | Include divider
+            div.checkbox-inline
+              label(for="includeButton")
+                input(type="checkbox" name="includeButton" v-model="includeButton" )
+                | Include button
 
-  div.row
-    div.col-xs-12
-      div(v-if="includeImage").item-group
-        h4 Small image #[span(@click="handleDelete(item)").delete.pull-right &#x2715;]
-        div.form-group
-          label(for="imageUrl") Image URL
-          input(type="text" id="imageUrl" v-model="imageUrl").form-control
-          p.help-block Image will be 120px wide
+      div.row
+        div.col-xs-12
+          div(v-if="includeImage").item-group
+            h4 Small image #[span(@click="handleDelete(item)").delete.pull-right &#x2715;]
+            div.form-group
+              label(for="imageUrl") Image URL
+              input(type="text" id="imageUrl" v-model="imageUrl").form-control
+              p.help-block Image will be 120px wide
 
-        div.form-group
-          label(for="caption") Caption
-          input(type="text" id="caption" v-model="caption").form-control
+            div.form-group
+              label(for="caption") Caption
+              input(type="text" id="caption" v-model="caption").form-control
 
   div.row
     div.col-xs-12
