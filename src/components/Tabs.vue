@@ -61,13 +61,13 @@ export default {
   content: '';
   position: absolute;
   left: 0;
-  right: 26px;
+  right: 34px;
   bottom: -6px;
   border-bottom: 2px solid var(--dark);
 }
 
 .tabs__header li button {
-  margin-right: 1rem;
+  margin-right: 1.5rem;
   padding: 10px;
   font: inherit;
   font-size: 1rem;
