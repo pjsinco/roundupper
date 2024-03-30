@@ -3,6 +3,7 @@ import { ref, computed, onMounted, nextTick } from 'vue';
 import Workspace from '@/components/Workspace.vue';
 import Tabs from '@/components/Tabs.vue';
 import Tab from '@/components/Tab.vue';
+import Switch from '@/components/Switch.vue';
 import { useRendererForNewsletter } from '@/composables/renderer-newsletter';
 import { editorFromTextArea } from '@/composables/useEditorFromTextArea';
 import { copyHtml, copyText } from '@/composables/useButtonFunctions';
@@ -14,6 +15,7 @@ export default {
     Workspace,
     Tabs,
     Tab,
+    Switch,
   },
 
   props: ['currentTemplate'],
@@ -60,7 +62,7 @@ export default {
     function initEditors() {
       nextTick(() => {
         const textEl = document.getElementById('input');
-        const textEditor = editorFromTextArea(input, textEl, '350px');
+        const textEditor = editorFromTextArea(input, textEl, '300px');
 
         const headlineEl = document.getElementById('headline');
         const headlineEditor = editorFromTextArea(headline, headlineEl, '72px');
@@ -87,6 +89,7 @@ export default {
     return {
       input,
       headline,
+
       output,
       headlineOutput,
       props,
