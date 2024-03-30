@@ -14,9 +14,12 @@
   --tint-primary-light: #fbf6fe;
   --tint-secondary-light: #eafafb;
   --font-color-light: #888;
-  --grey: #4a4a4a;
+  --dark: #4a4a4a;
+  --grey: #d0d0d0;
   --grey-light: #f3f3f3;
-  --border-radius: 1px;
+  --grey-dark: #888;
+  --border-radius: 4px;
+  --border-radius-button: 12px;
 }
 
 html {
@@ -91,7 +94,7 @@ body {
 }
 
 label {
-    font-weight: 400;
+  font-weight: 300;
 }
 
 hr {
@@ -193,7 +196,7 @@ hr {
   top: 0;
   left: 0;
   right: 0;
-  padding: 2rem;
+  padding: 3rem;
 }
 
 .sidebar {
