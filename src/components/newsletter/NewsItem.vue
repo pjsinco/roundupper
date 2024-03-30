@@ -4,6 +4,7 @@ import Workspace from '@/components/Workspace.vue';
 import Tabs from '@/components/Tabs.vue';
 import Tab from '@/components/Tab.vue';
 import Switch from '@/components/Switch.vue';
+import Option from '@/components/Option.vue';
 import { useRendererForNewsletter } from '@/composables/renderer-newsletter';
 import { editorFromTextArea } from '@/composables/useEditorFromTextArea';
 import { copyHtml, copyText } from '@/composables/useButtonFunctions';
@@ -16,6 +17,7 @@ export default {
     Tabs,
     Tab,
     Switch,
+    Option,
   },
 
   props: ['currentTemplate'],

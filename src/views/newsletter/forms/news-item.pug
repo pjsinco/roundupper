@@ -20,17 +20,21 @@ template(v-slot:form)
     Tab(title="Extras")
       div.row
         div.col-xs-12
-          div.form-group
-            Switch(v-model="dividerAbove")
-
-            div.checkbox-inline
-              label(for="dividerAbove")
-                input(type="checkbox" name="dividerAbove" v-model="dividerAbove" )
-                | Include divider
-            div.checkbox-inline
-              label(for="includeButton")
-                input(type="checkbox" name="includeButton" v-model="includeButton" )
-                | Include button
+          Option
+            template(v-slot:head)
+              p Divider
+            template(v-slot:tail)
+              Switch(v-model="dividerAbove")
+          Option
+            template(v-slot:head)
+              p Small image
+            template(v-slot:tail)
+              Switch(v-model="dividerAbove")
+          Option
+            template(v-slot:head)
+              p Button
+            template(v-slot:tail)
+              Switch(v-model="dividerAbove")
 
       div.row
         div.col-xs-12
