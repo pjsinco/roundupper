@@ -62,7 +62,7 @@ export default {
     function initEditors() {
       nextTick(() => {
         const textEl = document.getElementById('input');
-        const textEditor = editorFromTextArea(input, textEl, '350px');
+        const textEditor = editorFromTextArea(input, textEl, '300px');
 
         const headlineEl = document.getElementById('headline');
         const headlineEditor = editorFromTextArea(headline, headlineEl, '72px');
