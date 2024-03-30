@@ -21,10 +21,8 @@ template(v-slot:form)
       div.row
         div.col-xs-12
           div.form-group
-            div.checkbox-inline(style="padding-left: 0;")
-              label(for="includeImage")
-                input(type="checkbox" name="includeImage" v-model="includeImage" )
-                | Include small image
+            Switch(v-model="dividerAbove")
+
             div.checkbox-inline
               label(for="dividerAbove")
                 input(type="checkbox" name="dividerAbove" v-model="dividerAbove" )
