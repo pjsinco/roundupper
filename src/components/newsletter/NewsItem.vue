@@ -4,6 +4,10 @@ import Workspace from '@/components/Workspace.vue';
 import Tabs from '@/components/Tabs.vue';
 import Tab from '@/components/Tab.vue';
 import Switch from '@/components/Switch.vue';
+import Option from '@/components/Option.vue';
+import ButtonLink from '@/components/ButtonLink.vue';
+import CloseButton from '@/components/CloseButton.vue';
+import ItemGroup from '@/components/ItemGroup.vue';
 import { useRendererForNewsletter } from '@/composables/renderer-newsletter';
 import { editorFromTextArea } from '@/composables/useEditorFromTextArea';
 import { copyHtml, copyText } from '@/composables/useButtonFunctions';
@@ -16,12 +20,18 @@ export default {
     Tabs,
     Tab,
     Switch,
+    Option,
+    ButtonLink,
+    CloseButton,
+    ItemGroup,
   },
 
   props: ['currentTemplate'],
 
   setup(props) {
     const { renderer } = useRendererForNewsletter();
+
+    console.log('hello');
 
     marked.use({ renderer });
     marked.setOptions({
@@ -37,7 +47,7 @@ export default {
     const headline = ref(defaultHeadline);
     const imageUrl = ref(defaultImageUrl);
     const caption = ref('');
-    const includeImage = ref(true);
+    const includeImage = ref(false);
     const includeButton = ref(true);
     const dividerAbove = ref(true);
     const bookmark = `bookmark-${Math.floor(1000 * Math.random() * 4000)}`;
@@ -71,6 +81,14 @@ export default {
 
     onMounted(initEditors);
 
+    function handleAddImage() {
+      includeImage.value = true;
+    }
+
+    function handleAddButton() {
+      console.log('okaddbutton');
+    }
+
     function copy() {
       copyHtml();
     }
@@ -89,7 +107,6 @@ export default {
     return {
       input,
       headline,
-
       output,
       headlineOutput,
       props,
@@ -104,6 +121,8 @@ export default {
       imageTdStyle,
       bookmark,
       tabRef,
+      handleAddImage,
+      handleAddButton,
     };
   },
 };

@@ -20,30 +20,58 @@ template(v-slot:form)
     Tab(title="Extras")
       div.row
         div.col-xs-12
-          div.form-group
-            Switch(v-model="dividerAbove")
+          Option
+            template(v-slot:head)
+              | Divider
+            template(v-slot:tail)
+              Switch(v-model="dividerAbove")
 
-            div.checkbox-inline
-              label(for="dividerAbove")
-                input(type="checkbox" name="dividerAbove" v-model="dividerAbove" )
-                | Include divider
-            div.checkbox-inline
-              label(for="includeButton")
-                input(type="checkbox" name="includeButton" v-model="includeButton" )
-                | Include button
+          Option(:should-show="includeButton")
+            template(v-slot:head)
+              | Button
+            template(v-slot:tail)
+              div
+                ButtonLink(@click="includeButton = true")
+                  template(v-slot:text)
+                    | Add
+            template(v-slot:show)
+              div.row
+                div.col-xs-12
+                  div(style="margin-top: -1px; margin-bottom: -1px").item-group
+                    //ItemGroup(:closer="includeButton" title="Small image")
+                    h4(style="margin-top: 13px;") Button #[CloseButton(@click="includeButton = false")]
+                    div.form-group
+                      div.form-group
+                        label(for="text") Button text
+                        input(type="text" id="text" v-model="text").form-control
 
-      div.row
-        div.col-xs-12
-          div(v-if="includeImage").item-group
-            h4 Small image #[span(@click="handleDelete(item)").delete.pull-right &#x2715;]
-            div.form-group
-              label(for="imageUrl") Image URL
-              input(type="text" id="imageUrl" v-model="imageUrl").form-control
-              p.help-block Image will be 120px wide
+                      div.form-group
+                        label(for="link") Link
+                        input(type="text" id="link" v-model="link").form-control
 
-            div.form-group
-              label(for="caption") Caption
-              input(type="text" id="caption" v-model="caption").form-control
+
+          Option(:should-show="includeImage")
+            template(v-slot:head)
+              | Small image
+            template(v-slot:tail)
+              div
+                ButtonLink(@click="includeImage = true")
+                  template(v-slot:text)
+                    | Add
+            template(v-slot:show)
+              div.row
+                div.col-xs-12
+                  div(style="margin-top: -1px; margin-bottom: -1px").item-group
+                    h4(style="margin-top: 13px;") Small image #[CloseButton(@click="includeImage = false")]
+                    div.form-group
+                      label(for="imageUrl") Image URL
+                      input(type="text" id="imageUrl" v-model="imageUrl").form-control
+                      p.help-block Image will be 120px wide
+
+                    div.form-group
+                      label(for="caption") Caption
+                      input(type="text" id="caption" v-model="caption").form-control
+
 
   div.row
     div.col-xs-12
