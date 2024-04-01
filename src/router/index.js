@@ -132,11 +132,11 @@ const router = createRouter({
           name: 'TOC',
           component: () => import('../components/newsletter/Toc.vue'),
         },
-        {
-          path: 'button',
-          name: 'Button',
-          component: () => import('../components/aoa-general/Button.vue'),
-        },
+        //{
+        //  path: 'button',
+        //  name: 'Button',
+        //  component: () => import('../components/aoa-general/Button.vue'),
+        //},
       ],
     },
   ],

@@ -11,6 +11,7 @@ import ItemGroup from '@/components/ItemGroup.vue';
 import { useRendererForNewsletter } from '@/composables/renderer-newsletter';
 import { editorFromTextArea } from '@/composables/useEditorFromTextArea';
 import { copyHtml, copyText } from '@/composables/useButtonFunctions';
+import { useButtonSetup } from '@/composables/button-setup';
 import { marked } from 'marked';
 import Constants from '@/constants/newsletter';
 
@@ -30,8 +31,6 @@ export default {
 
   setup(props) {
     const { renderer } = useRendererForNewsletter();
-
-    console.log('hello');
 
     marked.use({ renderer });
     marked.setOptions({
@@ -87,15 +86,19 @@ export default {
 
     function handleAddButton() {
       console.log('okaddbutton');
+      includeButton.value = true;
     }
 
-    function copy() {
-      copyHtml();
-    }
+    // function copy() {
+    //   copyHtml();
+    // }
 
-    function copyTextVersion() {
-      copyText();
-    }
+    // function copyTextVersion() {
+    //   copyText();
+    // }
+
+    const { text, link, spaceAbove, spaceBelow, copy, buttonTdStyle } =
+      useButtonSetup();
 
     function reset() {
       input.value = defaultInput;
@@ -112,7 +115,6 @@ export default {
       props,
       reset,
       copy,
-      copyTextVersion,
       imageUrl,
       caption,
       includeImage,
@@ -123,6 +125,11 @@ export default {
       tabRef,
       handleAddImage,
       handleAddButton,
+      text,
+      link,
+      spaceAbove,
+      spaceBelow,
+      buttonTdStyle,
     };
   },
 };

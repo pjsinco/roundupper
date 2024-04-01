@@ -51,3 +51,5 @@ template(v-slot:render-container)
                                               p(style="color: #666666; font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-weight: normal; line-height: 17px; margin-bottom: 0; margin-top: 0;")
                                                 | {{ caption }}
               div(style="font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight: normal; line-height: 24px; text-align: left; color: #2a2a2a;" v-html="output")
+      template(v-if="includeButton")
+        include ../../includes/render-button
