@@ -16,11 +16,14 @@ export function useButtonSetup() {
       div.innerHTML = html;
       fragment.append(div);
 
-      // now we can use a DOM methods
       const tdEl = fragment.getElementById('msoPadding');
-      const styleAttr = tdEl.getAttribute('style');
-      const newStyleAttr = `${styleAttr} mso-padding-alt: 10px 32px;`;
-      tdEl.setAttribute('style', newStyleAttr);
+
+      if (tdEl !== null) {
+        // now we can use DOM methods
+        const styleAttr = tdEl.getAttribute('style');
+        const newStyleAttr = `${styleAttr} mso-padding-alt: 10px 32px;`;
+        tdEl.setAttribute('style', newStyleAttr);
+      }
 
       return fragment.firstElementChild.innerHTML;
     };

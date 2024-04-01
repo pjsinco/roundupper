@@ -32,6 +32,8 @@ export default {
   setup(props) {
     const { renderer } = useRendererForNewsletter();
 
+    console.log('hiyaz');
+
     marked.use({ renderer });
     marked.setOptions({
       gfm: true,

@@ -1,8 +1,22 @@
 template(v-slot:form)
-  h1.component__title Table of contents
+  div.row
+    div.col-xs-12
+      h1.component__title Table of contents
 
-  div.form-group
-    label(for="urlToFetch") Browser version URL
-    input(id="urlToFetch" v-model="urlToFetch").form-control
-  div.form-group.clearfix
-    button(@click="handleSubmit").btn.btn-sm.btn-default.pull-right Generate TOC
+  div(v-if="!haveToc").row
+    div.col-xs-12
+      div.form-group
+        label(for="urlToFetch") Browser version URL
+        input(id="urlToFetch" v-model="urlToFetch").form-control
+      div.form-group.clearfix
+        button(@click="handleSubmit").btn.btn-sm.btn-default.pull-right Generate TOC
+
+  div(v-show="haveToc").row
+    div.col-xs-12
+      div.form-group
+        label(for="input") Table of contents (in Markdown)
+        textarea(id="input" v-model="input").form-control
+
+  div.row
+    div.col-xs-12
+      include ../../includes/copy-button
