@@ -31,8 +31,9 @@ body {
   height: 100%;
 }
 
-#app {
-
+input[type="checkbox"],
+input[type="range"] {
+  accent-color: var(--primary-color);
 }
 
 .blank:after {
@@ -233,7 +234,7 @@ hr {
 }
 
 select:not([multiple]) {
-  padding: 0.2rem 0.25rem 0rem 0.5rem;
+  padding: 1px 0.25rem 0rem 0.5rem;
   padding-right: 2rem;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -388,6 +389,14 @@ body {
 
 .item-group .form-control {
   border: none;
+}
+
+.item-group input[type="text"].form-control {
+  border: 1px solid var(--tint-secondary);
+}
+
+input[type="text"].form-control {
+  padding-top: 8px;
 }
 
 .form-control {

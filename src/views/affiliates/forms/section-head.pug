@@ -6,4 +6,4 @@ template(v-slot:form)
       select(id="select" v-model="selected").form-control
         option(v-for="header in headers" :selected="selected.short == header.short" :value="header.short" :key="header.short") {{ header.name }}
 
-  include ../../includes/copy-buttons
+  include ../../includes/copy-button

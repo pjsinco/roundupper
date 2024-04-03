@@ -16,7 +16,11 @@ export function useNavigation(parent) {
         return route.path.startsWith(parent);
       })
       .map((route) => {
-        const { name, path } = route;
+        let { name, path, meta } = route;
+        if (meta.nickname !== undefined) {
+          name = meta.nickname;
+        }
+
         return { name, path };
       })
   );
