@@ -11,6 +11,10 @@ template(v-slot:form)
       div.form-group.clearfix
         button(@click="handleSubmit").btn.btn-sm.btn-default.pull-right Generate TOC
 
+  div(v-if="error != ''").row
+    div.col-xs-12
+      p(class="text-danger bg-danger" style="padding: 10px;") {{ error }}
+
   div(v-show="haveToc").row
     div.col-xs-12
       div.form-group

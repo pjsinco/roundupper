@@ -19,11 +19,14 @@ export default {
     const haveToc = ref(false);
     const tocMarkdown = ref('');
     const input = ref('');
+    const error = ref('');
     let editor = null;
 
     const defaultTocInput = '### In this issue';
 
     const { renderer } = useRendererForNewsletter();
+
+    console.log('hiya');
 
     marked.use({ renderer });
     marked.setOptions({
@@ -44,6 +47,7 @@ export default {
 
     async function handleSubmit() {
       isLoading.value = true;
+      error.value = '';
 
       //const url = 'http://localhost:5001/toc';
       const url = 'https://andthatproveswhat.com/roundupper-api/toc';
@@ -71,7 +75,9 @@ export default {
       } catch (err) {
         /* handle error */
         console.error(err);
+
         haveToc.value = false;
+        error.value = 'Error fetching TOC';
       } finally {
         isLoading.value = false;
       }
@@ -97,6 +103,7 @@ export default {
       output,
       reset,
       copy,
+      error,
     };
   },
 };
