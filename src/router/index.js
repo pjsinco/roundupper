@@ -168,6 +168,14 @@ const router = createRouter({
             nickname: 'TOC',
           },
         },
+        {
+          path: 'header',
+          name: 'Newsletter header',
+          component: () => import('../components/aoa-general/Header.vue'),
+          meta: {
+            nickname: 'Header',
+          },
+        },
         //{
         //  path: 'button',
         //  name: 'Button',
