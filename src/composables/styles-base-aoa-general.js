@@ -83,10 +83,19 @@ export function useAoaGeneralRenders() {
         <${listType}></div>\n`;
   }
 
+  function image(href, title, text) {
+    return `
+      <img src="${href}" style="max-width: 600px; border: 0; display: block; outline: none; text-decoration: none; height: auto; font-size: 13px;" title=${title} alt="${text}" />`;
+  }
+  //return `
+  //<img src="${href}" style="max-width: 600px; border: 0; display: block; outline: none; text-decoration: none; height: auto; width: 100%; font-size: 13px;" title=${title} alt="${text}" />`;
+  //}
+
   return {
     paragraph,
     heading,
     link,
     list,
+    image,
   };
 }

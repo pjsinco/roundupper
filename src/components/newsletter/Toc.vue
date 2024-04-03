@@ -36,7 +36,6 @@ export default {
     });
 
     function initEditor() {
-      console.log('okiniteditor');
       nextTick(() => {
         const el = document.getElementById('input');
         editor = editorFromTextArea(input, el, '250px');
@@ -78,6 +77,14 @@ export default {
       }
     }
 
+    function reset() {
+      window.location.reload();
+    }
+
+    function copy() {
+      copyHtml();
+    }
+
     onMounted(initEditor);
 
     return {
@@ -88,6 +95,8 @@ export default {
       input,
       haveToc,
       output,
+      reset,
+      copy,
     };
   },
 };

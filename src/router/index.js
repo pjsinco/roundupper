@@ -45,6 +45,9 @@ const router = createRouter({
           path: 'date',
           name: 'Date',
           component: () => import('../components/the-do/Date.vue'),
+          meta: {
+            nickname: 'Date',
+          },
         },
       ],
     },
@@ -58,17 +61,26 @@ const router = createRouter({
           path: 'news-item',
           name: 'News item',
           component: () => import('../components/affiliates/NewsItem.vue'),
+          meta: {
+            nickname: 'News item',
+          },
         },
         {
           path: 'news-item-with-image',
           name: 'News item with image',
           component: () =>
             import('../components/affiliates/NewsItemWithImage.vue'),
+          meta: {
+            nickname: 'News item with image',
+          },
         },
         {
           path: 'section-head',
           name: 'Section head',
           component: () => import('../components/affiliates/SectionHead.vue'),
+          meta: {
+            nickname: 'Section head',
+          },
         },
       ],
     },
@@ -82,32 +94,50 @@ const router = createRouter({
           path: 'text',
           name: 'Text',
           component: () => import('../components/aoa-general/Text.vue'),
+          meta: {
+            nickname: 'Text',
+          },
         },
         {
           path: 'button',
           name: 'Button',
           component: () => import('../components/aoa-general/Button.vue'),
+          meta: {
+            nickname: 'Button',
+          },
         },
         {
           path: 'header',
           name: 'Header',
           component: () => import('../components/aoa-general/Header.vue'),
+          meta: {
+            nickname: 'Header',
+          },
         },
         {
           path: 'icon-list',
           name: 'Icon list',
           component: () => import('../components/aoa-general/IconList.vue'),
+          meta: {
+            nickname: 'Icon list',
+          },
         },
         {
           path: 'image-block',
           name: 'Image block',
           component: () => import('../components/aoa-general/ImageBlock.vue'),
+          meta: {
+            nickname: 'Image block',
+          },
         },
         {
           path: 'two-up-signature',
           name: 'Two-up signature',
           component: () =>
             import('../components/aoa-general/TwoUpSignature.vue'),
+          meta: {
+            nickname: 'Two-up signature',
+          },
         },
         //{
         //path: 'spacer',
@@ -120,17 +150,23 @@ const router = createRouter({
       path: '/newsletter',
       name: 'Newsletter',
       component: Newsletter,
-      beforeEnter: navigateToDefault('/newsletter', 'News item'),
+      beforeEnter: navigateToDefault('/newsletter', 'Newsletter item'),
       children: [
         {
           path: 'news-item',
-          name: 'News item',
+          name: 'Newsletter item',
           component: () => import('../components/newsletter/NewsItem.vue'),
+          meta: {
+            nickname: 'News item',
+          },
         },
         {
           path: 'toc',
           name: 'TOC',
           component: () => import('../components/newsletter/Toc.vue'),
+          meta: {
+            nickname: 'TOC',
+          },
         },
         //{
         //  path: 'button',

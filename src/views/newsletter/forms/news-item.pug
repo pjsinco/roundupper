@@ -48,7 +48,14 @@ template(v-slot:form)
                       div.form-group
                         label(for="link") Link
                         input(type="text" id="link" v-model="link").form-control
-
+                      div.form-group
+                        div.checkbox-inline
+                          label
+                            input(type="checkbox" name="spaceAbove" v-model="spaceAbove")
+                            | Space above
+                          label
+                            input(type="checkbox" name="spaceBelow" v-model="spaceBelow")
+                            | Space below
 
           Option(:should-show="includeImage")
             template(v-slot:head)

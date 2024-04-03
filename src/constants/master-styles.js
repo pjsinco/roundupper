@@ -29,6 +29,10 @@ export const base = {
   lineDrop: `${spacing.unit}px`,
   halfLineDrop: `${spacing.unit / 2}px`,
   fontFamily: 'Arial, Helvetica, sans-serif',
+  layout: {
+    fullWidth: 600,
+    liveAreaWidth: 528,
+  },
   colors: {
     headline: colors.navy,
     text: colors.black,

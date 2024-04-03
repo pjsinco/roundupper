@@ -1,5 +1,12 @@
 <script>
-import { ref, computed, onMounted, nextTick } from 'vue';
+import {
+  ref,
+  computed,
+  onMounted,
+  onUnmounted,
+  nextTick,
+  onUpdated,
+} from 'vue';
 import Workspace from '@/components/Workspace.vue';
 import Tabs from '@/components/Tabs.vue';
 import Tab from '@/components/Tab.vue';
@@ -31,8 +38,10 @@ export default {
 
   setup(props) {
     const { renderer } = useRendererForNewsletter();
-
-    console.log('hiyaz');
+    let renderedEl = null;
+    let observer = null;
+    const config = { attributes: true, childList: true, subtree: true };
+    const insertedNodes = [];
 
     marked.use({ renderer });
     marked.setOptions({
@@ -80,7 +89,53 @@ export default {
       });
     }
 
-    onMounted(initEditors);
+    function handleImageLoad(evt) {
+      evt.currentTarget.displayWidth = evt.currentTarget.naturalWidth;
+      evt.target.removeEventListener('load', handleImageLoad);
+    }
+
+    onMounted(() => {
+      initEditors();
+      renderedEl = document.querySelector('#rendered');
+      observer = new MutationObserver((mutations, observer) => {
+        mutations.forEach((mutation) => {
+          mutation.addedNodes.forEach((node) => {
+            // make sure new node type is one we can look for images inside of
+            if (typeof node.getElementsByTagName !== 'function') return;
+
+            const imgs = node.getElementsByTagName('img');
+
+            if (imgs.length) {
+              for (let i = 0, len = imgs.length; i < len; i++) {
+                let width;
+                imgs[i].displayWidth = null;
+                if (!imgs[i].complete) {
+                  imgs[i].addEventListener('load', handleImageLoad, {
+                    once: true,
+                  });
+                } else {
+                  width = imgs[i].naturalWidth;
+                }
+                console.log(
+                  "width (should always be a value that isn't 0): ",
+                  width
+                );
+                imgs[i].setAttribute(
+                  'width',
+                  Math.min(width, Constants.Layout.liveAreaWidth)
+                );
+              }
+            }
+          });
+        });
+      });
+
+      observer.observe(renderedEl, config);
+    });
+
+    onUnmounted(() => {
+      observer.disconnect();
+    });
 
     function handleAddImage() {
       includeImage.value = true;
@@ -100,13 +155,15 @@ export default {
     // }
 
     const { text, link, spaceAbove, spaceBelow, copy, buttonTdStyle } =
-      useButtonSetup();
+      useButtonSetup({ spaceAbove: true, spaceBelow: false });
 
     function reset() {
-      input.value = defaultInput;
-      headline.value = defaultHeadline;
-      imageUrl.value = defaultImageUrl;
-      caption.value = '';
+      window.location.reload();
+
+      //input.value = defaultInput;
+      //headline.value = defaultHeadline;
+      //imageUrl.value = defaultImageUrl;
+      //caption.value = '';
     }
 
     return {

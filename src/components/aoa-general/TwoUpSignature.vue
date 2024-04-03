@@ -195,7 +195,7 @@ export default {
   bottom: 3px;
   left: -600px;
   right: -600px;
-  border-bottom: 1px solid fuchsia;
+  border-bottom: 1px solid var(--secondary-color);
   overflow: hidden;
 }
 

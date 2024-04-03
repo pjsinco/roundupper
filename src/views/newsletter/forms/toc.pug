@@ -17,6 +17,13 @@ template(v-slot:form)
         label(for="input") Table of contents (in Markdown)
         textarea(id="input" v-model="input").form-control
 
-  div.row
+  div(v-if="haveToc").row
     div.col-xs-12
-      include ../../includes/copy-button
+      div.form-group.clearfix(style="margin-top: 40px;")
+        button.btn.btn-default#refresh(@click="reset")
+          span.glyphicon.glyphicon-refresh
+          | &nbsp;Reset
+        div.btn-group.pull-right
+          button.btn.btn-primary#copyHtml(@click="copy" aria-label="Copied HTML!")
+            span.glyphicon.glyphicon-copy
+            | &nbsp;Copy HTML

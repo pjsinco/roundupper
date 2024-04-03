@@ -1,11 +1,19 @@
 import { ref, computed } from 'vue';
 import { copyHtml, copyText } from '@/composables/useButtonFunctions';
 
-export function useButtonSetup() {
-  const text = ref('Learn more');
-  const link = ref('');
-  const spaceAbove = ref(true);
-  const spaceBelow = ref(true);
+export function useButtonSetup(args = {}) {
+  let defaults = {
+    spaceAbove: true,
+    spaceBelow: true,
+    text: 'Learn more',
+    link: '',
+  };
+  let options = Object.assign({}, defaults, args);
+
+  const text = ref(options.text);
+  const link = ref(options.link);
+  const spaceAbove = ref(options.spaceAbove);
+  const spaceBelow = ref(options.spaceBelow);
 
   function copy() {
     // our inline style 'mso-padding-alt' gets stripped
