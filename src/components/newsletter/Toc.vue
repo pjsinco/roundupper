@@ -21,6 +21,14 @@ export default {
     const input = ref('');
     const error = ref('');
     let editor = null;
+    const reactions = {
+      testTube: '🧪',
+      safetyGlasses: '🥽',
+      happy: '🙂',
+      nervous: '😬',
+      sad: '🙁',
+    };
+    const reaction = ref(reactions.safetyGlasses);
 
     const defaultTocInput = '### In this issue';
 
@@ -48,6 +56,7 @@ export default {
     async function handleSubmit() {
       isLoading.value = true;
       error.value = '';
+      reactions.value = reaction.nervous;
 
       //const url = 'http://localhost:5001/toc';
       const url = 'https://andthatproveswhat.com/roundupper-api/toc';
@@ -72,9 +81,11 @@ export default {
         });
 
         haveToc.value = true;
+        reaction.value = reactions.happy;
       } catch (err) {
         /* handle error */
         console.error(err);
+        reaction.value = reactions.sad;
 
         haveToc.value = false;
         error.value = 'Error fetching TOC';
@@ -104,6 +115,8 @@ export default {
       reset,
       copy,
       error,
+      reaction,
+      reactions,
     };
   },
 };

@@ -176,6 +176,14 @@ const router = createRouter({
             nickname: 'Header',
           },
         },
+        {
+          path: 'highlight',
+          name: 'Newsletter highlight',
+          component: () => import('../components/newsletter/Highlight.vue'),
+          meta: {
+            nickname: 'Highlight',
+          },
+        },
         //{
         //  path: 'button',
         //  name: 'Button',
