@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router';
 import Home from '../pages/Home.vue';
 import TheDO from '../pages/TheDO.vue';
 import AffiliateNews from '../pages/AffiliateNews.vue';
@@ -18,7 +18,7 @@ const navigateToDefault = function (basePath, defaultPath) {
 const thedoRedirect = navigateToDefault('/the-do', 'Date');
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
