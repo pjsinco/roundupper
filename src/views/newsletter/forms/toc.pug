@@ -1,7 +1,8 @@
 template(v-slot:form)
   div.row
     div.col-xs-12
-      h1.component__title Table of contents
+      h1(style="display: flex; justify-content: space-between; align-items: baseline;").component__title Table of contents
+        | #[span(style="margin-left: 8px; font-size: 20px; font-weight: 300;").small A little experimental {{ reaction }}]
 
   div(v-if="!haveToc").row
     div.col-xs-12

@@ -59,7 +59,7 @@ export function useRendererForNewsletter() {
               <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0px;">
                 <tr>
                   <td class="td-image-parent" style="width: 100%">
-                    <img src="${href}" style="max-width: 528px; border: 0; display: block; outline: none; text-decoration: none; height: auto; font-size: 13px;" height="auto" title=${title} alt="${text}" />
+                    <img src="${href}" style="width: 100%; max-width: 528px; border: 0; display: block; outline: none; text-decoration: none; height: auto; font-size: 13px;" height="auto" title=${title} alt="${text}" />
                   </td>
                 </tr>
               </table>
