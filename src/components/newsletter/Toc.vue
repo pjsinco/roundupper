@@ -81,7 +81,7 @@ export default {
         });
 
         haveToc.value = true;
-        reaction.value = reactions.happy;
+        reaction.value = reactions.testTube;
       } catch (err) {
         /* handle error */
         console.error(err);
