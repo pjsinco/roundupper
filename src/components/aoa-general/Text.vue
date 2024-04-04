@@ -57,7 +57,7 @@ export default {
     }
 
     function reset() {
-      input.value = defaultInput;
+      window.location.reload();
     }
 
     onMounted(initEditor);
