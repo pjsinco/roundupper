@@ -18,3 +18,6 @@ pandoc \
 
 ### Fri Mar  1 09:34:03 2024 CST
 * [Extended Syntax | Markdown Guide](https://www.markdownguide.org/extended-syntax/#heading-ids)
+
+### Wed Apr  3 12:26:21 2024 CDT
+* [Use Mutation Observers to place image placeholders (spinners) on loading images within a target element.](https://gist.github.com/fritzy/8700093)
