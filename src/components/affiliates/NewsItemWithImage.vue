@@ -51,10 +51,12 @@ export default {
     }
 
     function reset() {
-      input.value = defaultInput;
-      headline.value = defaultHeadline;
-      imageUrl.value = defaultImageUrl;
-      altText.value = '';
+      window.location.reload();
+
+      //input.value = defaultInput;
+      //headline.value = defaultHeadline;
+      //imageUrl.value = defaultImageUrl;
+      //altText.value = '';
     }
 
     return {
