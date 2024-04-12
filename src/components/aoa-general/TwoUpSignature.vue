@@ -130,9 +130,24 @@ export default {
     }
 
     function copy() {
+      function replaceMsoPlaceholders(html) {
+        const replacements = [
+          `[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="two-up-image-left-outlook" style="vertical-align:top;width:300px;" ><![endif]`,
+          `[if mso | IE]></td><td class="two-up-image-right-outlook" style="vertical-align:top;width:300px;" ><![endif]`,
+          `[if mso | IE]></td></tr></table><![endif]`,
+        ];
+
+        for (let i = 0, len = replacements.length; i < len; i++) {
+          html = html.replace(`%%MSO_${i}%%`, replacements[i]);
+        }
+
+        return html;
+      }
+
       showGuides.value = false;
       showingGuides = showGuides.value;
-      copyHtml();
+
+      copyHtml(replaceMsoPlaceholders);
     }
 
     function copyTextVersion() {
