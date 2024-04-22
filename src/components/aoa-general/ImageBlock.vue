@@ -27,6 +27,7 @@ export default {
     const caption = ref('Lorem ipsum dolor');
     const altText = ref('');
     const displayWidth = ref(253);
+    const link = ref('');
 
     const reset = () => {
       imageUrl.value = defaultImageUrl;
@@ -36,10 +37,26 @@ export default {
       caption.value = 'Lorem ipsum dolor';
       displayWidth.value = 253;
       bleed.value = false;
+      link.value = '';
     };
 
+    console.log('h');
+
     function copy() {
-      copyHtml();
+      function replaceMsoPlaceholders(html) {
+        const replacements = [
+          `[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:528px;" ><![endif]`,
+          `[if mso | IE]></td></tr></table><![endif]`,
+        ];
+
+        for (let i = 0, len = replacements.length; i < len; i++) {
+          html = html.replace(`%%MSO_${i}%%`, replacements[i]);
+        }
+
+        return html;
+      }
+
+      copyHtml(replaceMsoPlaceholders);
     }
 
     function copyTextVersion() {
@@ -131,6 +148,7 @@ export default {
       reset,
       copy,
       copyTextVersion,
+      link,
     };
   },
 };

@@ -5,7 +5,7 @@ template(v-slot:render-container)
         tbody
           tr
             td(:style="spacingStyle")
-              <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:528px;" ><![endif]-->
+              <!--%%MSO_0%%-->
               div(class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;")
                 table(border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%")
                   tbody
@@ -15,9 +15,11 @@ template(v-slot:render-container)
                           tbody
                             tr
                               td(:style="{ width: displayWidthNumber + 'px' }")
-                                img(:src="imageUrl" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" :width="displayWidthNumber" height="auto")
+                                a(v-if="link != ''" :href="link" style="text-decoration: none;")
+                                  img(:src="imageUrl" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" :width="displayWidthNumber" height="auto")
+                                img(v-else :src="imageUrl" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" :width="displayWidthNumber" height="auto")
                     tr(v-if="caption != ''")
                       td(:align="selectedAlign" :style="captionTdStyle")
                         div(:style="captionStyle")
                           | {{ caption }}
-              <!--[if mso | IE]></td></tr></table><![endif]-->
+              <!--%%MSO_1%%-->

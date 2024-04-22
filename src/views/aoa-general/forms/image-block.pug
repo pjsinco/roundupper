@@ -22,10 +22,18 @@ template(v-slot:form)
 
   div.row
     div.col-xs-12
-      div(slot="form")
+      div
         div.form-group
           label(for="caption") Caption
           input(type="text" id="caption" v-model="caption").form-control
+
+  div.row
+    div.col-xs-12
+      div
+        div.form-group
+          label(for="link") Image link (optional)
+          input(type="text" id="link" v-model="link").form-control
+          // p.help-block Add a link to the image
 
   div.row
     div.col-xs-12
