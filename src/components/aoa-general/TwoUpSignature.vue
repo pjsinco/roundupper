@@ -137,8 +137,15 @@ export default {
           `[if mso | IE]></td></tr></table><![endif]`,
         ];
 
+        const regex = /<span.?id="mso_\d"><\/span>/gm;
+        const targets = [...html.matchAll(regex)];
+
+        console.log(
+          `Found ${targets.length} targets for ${replacements.length} replacements`
+        );
+
         for (let i = 0, len = replacements.length; i < len; i++) {
-          html = html.replace(`%%MSO_${i}%%`, replacements[i]);
+          html = html.replace(targets[i], replacements[i]);
         }
 
         return html;
