@@ -40,13 +40,11 @@ export default {
       link.value = '';
     };
 
-    console.log('h');
-
     function copy() {
       function replaceMsoPlaceholders(html) {
         const replacements = [
-          `[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:528px;" ><![endif]`,
-          `[if mso | IE]></td></tr></table><![endif]`,
+          `<!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:528px;" ><![endif]-->`,
+          `<!--[if mso | IE]></td></tr></table><![endif]-->`,
         ];
 
         const regex = /<span.?id="mso_\d"><\/span>/gm;

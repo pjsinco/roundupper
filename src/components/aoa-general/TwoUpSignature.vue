@@ -132,9 +132,9 @@ export default {
     function copy() {
       function replaceMsoPlaceholders(html) {
         const replacements = [
-          `[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="two-up-image-left-outlook" style="vertical-align:top;width:300px;" ><![endif]`,
-          `[if mso | IE]></td><td class="two-up-image-right-outlook" style="vertical-align:top;width:300px;" ><![endif]`,
-          `[if mso | IE]></td></tr></table><![endif]`,
+          `<!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="two-up-image-left-outlook" style="vertical-align:top;width:300px;" ><![endif]-->`,
+          `<!--[if mso | IE]></td><td class="two-up-image-right-outlook" style="vertical-align:top;width:300px;" ><![endif]-->`,
+          `<!--[if mso | IE]></td></tr></table><![endif]-->`,
         ];
 
         const regex = /<span.?id="mso_\d"><\/span>/gm;
