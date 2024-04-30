@@ -21,3 +21,6 @@ pandoc \
 
 ### Wed Apr  3 12:26:21 2024 CDT
 * [Use Mutation Observers to place image placeholders (spinners) on loading images within a target element.](https://gist.github.com/fritzy/8700093)
+
+### Tue Apr 30 09:49:05 2024 CDT
+* [Developing HTML Emails Using Divs and “Ghost Tables” - Web Design](https://elements.envato.com/learn/developing-html-emails-using-divs-and-ghost-tables)
