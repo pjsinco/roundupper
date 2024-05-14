@@ -1,0 +1,36 @@
+template(v-slot:form)
+  div.row
+    div.col-xs-12
+      h1.component__title Button
+  div.row
+    div.col-xs-12
+      div.form-group
+        label(for="text") Button text
+        input(type="text" id="text" v-model="text").form-control
+
+      div.form-group
+        label(for="link") Link
+        input(type="text" id="link" v-model="link").form-control
+
+  div.row
+    div.col-xs-12
+      div.form-group
+        label(for="select") Color
+        select(id="select" v-model="selectedColor").form-control
+          option(v-for="color in colorOptions" :selected="selectedColor.name == color.name" :value="color.name" :key="color.name") {{ color.name }}
+
+  div.row
+    div.col-xs-12
+      div.form-group
+        div.checkbox-inline
+          label
+            input(type="checkbox" name="spaceAbove" v-model="spaceAbove")
+            | Space above
+          label
+            input(type="checkbox" name="spaceBelow" v-model="spaceBelow")
+            | Space below
+
+
+  div.row
+    div.col-xs-12
+      include ../../includes/copy-button

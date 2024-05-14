@@ -1,24 +1,31 @@
 <script>
-import { ref } from 'vue';
-import TheDO from '@/pages/TheDO.vue';
+import { ref, onMounted, onUnmounted } from 'vue';
+import Navbar from '@/components/Navbar.vue';
 import { useRouter } from 'vue-router';
+import { useParentRoutes } from '@/composables/useParentRoutes';
 
 export default {
   components: {
-    TheDO,
+    Navbar,
   },
 
   setup() {
+    const routes = useParentRoutes();
     const router = useRouter();
-    const routes = router.getRoutes().filter((r) => r.name !== 'Home');
-
-    console.log('routes', routes);
 
     const handleSubmit = (evt) => {
       router.push(selectedRoute.value);
     };
 
     const selectedRoute = ref(routes[0].path);
+
+    onMounted(() => {
+      document.querySelector('.blank').classList.add('no-rule');
+    });
+
+    onUnmounted(() => {
+      document.querySelector('.blank').classList.remove('no-rule');
+    });
 
     return {
       routes,
@@ -30,6 +37,8 @@ export default {
 </script>
 
 <template lang="pug">
+  div
+    navbar
   div.container-fluid
     div.row
       div.col-md-offset-3.col-md-6.text-center(style="margin-top: 5rem;")

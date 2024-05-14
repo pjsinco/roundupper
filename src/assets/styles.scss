@@ -1,27 +1,42 @@
-$first-color: #1ccacd;
-//$second-color: #e40066;
-$second-color: #ff3366;
-$third-color: #8a1c7c;
-$font-color-light: #888;
-$light-gray: #f3f3f3;
-$dark-gray: #4a4a4a;
-$border-radius: 1px;
-
 @import './variables';
 @import 'animate.css';
-@import './tooltipped';
-@import './toast';
+@import './modules/component';
+@import './modules/item-group';
+@import './modules/tooltipped';
+@import './modules/toast';
+
+
+:root {
+  --primary-color: #7d1aba;
+  --secondary-color: #1ccacd;
+  --tint-primary: #d8adf4;
+  --tint-secondary: #b6eaed;
+  --tint-primary-light: #fbf6fe;
+  --tint-secondary-light: #eafafb;
+  --font-color-light: #888;
+  --dark: #4a4a4a;
+  --grey: #d0d0d0;
+  --grey-light: #f3f3f3;
+  --grey-dark: #888;
+  --border-radius: 4px;
+  --border-radius-button: 12px;
+}
+
+html {
+  font-size: 16px;
+}
 
 html,
 body {
   height: 100%;
 }
 
-#app {
-
+input[type="checkbox"],
+input[type="range"] {
+  accent-color: var(--primary-color);
 }
 
-body:after {
+.blank:after {
   content: "";
   position: fixed;
   top: 0;
@@ -33,7 +48,7 @@ body:after {
   background-color: #d0d0d0;
 }
 
-body.no-rule:after {
+.blank.no-rule:after {
   background-color: transparent;
 }
 
@@ -80,13 +95,16 @@ body.no-rule:after {
 }
 
 label {
-    font-weight: 400;
-    color: gray;
+  font-weight: 300;
 }
 
 hr {
-    /*border-top: 1px dashed #929292;*/
     border-top: 1px dashed #ccc;
+    border-top: 1px dashed #ccc;
+}
+
+.checkbox-inline > label {
+  line-height: 1.8;
 }
 
 .checkbox-inline > label:last-child {
@@ -133,7 +151,7 @@ hr {
 
 .column {
   position: absolute;
-  top: 0;
+  top: 50px;
   bottom: 0;
   width: 50%;
 }
@@ -147,7 +165,9 @@ hr {
 }
 
 .split-right {
+  position: fixed;
   right: 0;
+  overflow: scroll;
   width: 50%;
   padding: 2rem;
 }
@@ -177,7 +197,7 @@ hr {
   top: 0;
   left: 0;
   right: 0;
-  padding: 2rem;
+  padding: 2rem 3rem 3em;
 }
 
 .sidebar {
@@ -185,8 +205,11 @@ hr {
 }
 
 .navbar {
-  position: relative;
-  z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
 }
 
 .navbar-center {
@@ -211,11 +234,11 @@ hr {
 }
 
 select:not([multiple]) {
-  padding: .5rem;
+  padding: 1px 0.25rem 0rem 0.5rem;
   padding-right: 2rem;
   -webkit-appearance: none;
   -moz-appearance: none;
-  line-height: 1.4;
+  line-height: 1;
   background-position: right 50%;
   background-repeat: no-repeat;
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAMCAYAAABSgIzaAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NDZFNDEwNjlGNzFEMTFFMkJEQ0VDRTM1N0RCMzMyMkIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NDZFNDEwNkFGNzFEMTFFMkJEQ0VDRTM1N0RCMzMyMkIiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo0NkU0MTA2N0Y3MUQxMUUyQkRDRUNFMzU3REIzMzIyQiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo0NkU0MTA2OEY3MUQxMUUyQkRDRUNFMzU3REIzMzIyQiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PuGsgwQAAAA5SURBVHjaYvz//z8DOYCJgUxAf42MQIzTk0D/M+KzkRGPoQSdykiKJrBGpOhgJFYTWNEIiEeAAAMAzNENEOH+do8AAAAASUVORK5CYII=);
@@ -238,12 +261,17 @@ body {
 }
 
 .help-block {
+  margin-bottom: 0;
   font-size: 90%;
   color: rgba(115, 115, 115, 0.57);
 }
 
 .btn {
   border-radius: $border-radius;
+}
+
+.btn-sm {
+  padding: 7px 10px 5px 10px;
 }
 
 .btn-default.focus,
@@ -301,14 +329,18 @@ body {
 }
 
 .navbar-inverse {
-  background-color: $light-gray;
-  border-color: $light-gray;
+  background-color: var(--tint-secondary-light);
+  border-color: var(--tint-secondary-light);
 }
 
 .navbar label,
 .navbar-inverse .navbar-nav>li>a,
 .navbar-inverse .navbar-brand {
-  color: $dark-gray;
+  color: $brandcolor;
+}
+
+.navbar-brand {
+  font-weight: 600;
 }
 
 .navbar-inverse .navbar-brand:focus,
@@ -316,9 +348,9 @@ body {
   color: $second-color;
 }
 
-navbar-inverse .navbar-nav>.open>a,
-navbar-inverse .navbar-nav>.open>a:focus,
-navbar-inverse .navbar-nav>.open>a:hover {
+.navbar-inverse .navbar-nav>.open>a,
+.navbar-inverse .navbar-nav>.open>a:focus,
+.navbar-inverse .navbar-nav>.open>a:hover {
   background-color: darken($light-gray, 4%);
   border-color: darken($light-gray, 4%);
 }
@@ -354,6 +386,18 @@ navbar-inverse .navbar-nav>.open>a:hover {
 .btn-group>.btn:focus,
 .btn-group>.btn:hover {
   z-index: auto;
+}
+
+.item-group .form-control {
+  border: none;
+}
+
+.item-group input[type="text"].form-control {
+  border: 1px solid var(--tint-secondary);
+}
+
+input[type="text"].form-control {
+  padding-top: 8px;
 }
 
 .form-control {

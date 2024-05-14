@@ -1,0 +1,56 @@
+template(v-slot:form)
+  div.row
+    div.col-xs-12
+      h1.component__title Image block
+  div(slot="form").row
+    div.col-xs-12
+      div.form-group
+        label(for="text") Image URL
+        input(type="text" id="imageUrl" v-model="imageUrl").form-control
+
+  div.row
+    div.col-xs-6
+      div.form-group
+        label(for="align") Alignment
+        select(id="align" v-model="selectedAlign").form-control
+          option(v-for="option in alignOptions" :value="option.value") {{ option.text }}
+    div.col-xs-6
+      div.form-group(style="margin-bottom: 0;")
+        label(for="displayWidth") Display width (in pixels)
+        input(type="number" min="100" max="600" id="displayWidth" v-model="displayWidth").form-control
+        p.help-block Full-width: 528px
+
+  div.row
+    div.col-xs-12
+      div
+        div.form-group
+          label(for="caption") Caption
+          input(type="text" id="caption" v-model="caption").form-control
+
+  div.row
+    div.col-xs-12
+      div
+        div.form-group
+          label(for="link") Image link (optional)
+          input(type="text" id="link" v-model="link").form-control
+          // p.help-block Add a link to the image
+
+  div.row
+    div.col-xs-12
+      div.form-group
+        div.checkbox-inline
+          label
+            input(type="checkbox" name="spaceAbove" v-model="spaceAbove")
+            | Space above
+          label
+            input(type="checkbox" name="spaceBelow" v-model="spaceBelow")
+            | Space below
+        div.checkbox-inline.pull-right
+          label
+            input(type="checkbox" name="bleed" v-model="bleed")
+            | Bleed
+
+
+  div.row
+    div.col-xs-12
+      include ../../includes/copy-button

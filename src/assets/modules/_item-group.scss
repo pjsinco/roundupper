@@ -1,0 +1,18 @@
+.item-group {
+  margin-bottom: 1.25rem;
+  margin-top: 1.75rem;
+  padding: 1.25rem;
+  background-color: var(--tint-secondary-light);
+  border-top: 3px solid var(--tint-secondary);
+
+  h4 {
+    font-weight: 500;
+    font-size: 1.125rem;
+    margin-top: 0;
+    margin-bottom: 1.25rem;
+  }
+}
+
+.item-group + .item-group {
+  //margin: 0;
+}

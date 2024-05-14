@@ -1,24 +1,24 @@
 <script>
-import { RouterLink, RouterView, useRouter, useRoute } from 'vue-router';
-// import Home from '../pages/Home.vue';
-// import TheDO from '@/pages/TheDO.vue';
+import { RouterLink, useRoute } from 'vue-router';
+import { useParentRoutes } from '@/composables/useParentRoutes';
 
 export default {
-  components: {
-    // Home,
-    // TheDO,
-  },
+  props: ['templateName'],
 
-  setup() {
-    const router = useRouter();
-    const routes = router.getRoutes();
+  setup(props) {
     const route = useRoute();
+    const parentOfCurrentRoute = route.matched[0].name;
 
-    console.log('route', route);
+    // remove current route
+    const routes = useParentRoutes().filter((r) => {
+      const parentPath = route.matched[0].path;
+      return r.path !== route.path && r.path !== parentPath;
+    });
 
     return {
       routes,
-      route,
+      props,
+      parentOfCurrentRoute,
     };
   },
 };
@@ -28,21 +28,18 @@ export default {
   nav.navbar.navbar-inverse#nav
     div.container-fluid
       div.navbar-header
-        a.navbar-brand(href="/") Roundupper
+        router-link.navbar-brand(to="/") Roundupper
+
       
       div.navbar-center
         slot(name="select")
 
-      //-ul.nav.navbar-nav.navbar-right(v-if="templateName")
-      ul.nav.navbar-nav.navbar-right
+      ul.nav.navbar-nav.navbar-right(v-if="props.templateName")
         li.dropdown
-          a.dropdown-toggle(href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false") {{ route.name }} #[span.caret]
+          a.dropdown-toggle(href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false") {{ parentOfCurrentRoute }} #[span.caret]
           ul.dropdown-menu
             li(v-for="route in routes")
-              router-link(:to="route.path")
-                | TODO
-              //v-link(v-bind:href="route.path") {{ route.name }}
-              //a(v-bind:href="route.path") {{ route.name }}
+              router-link(:to="route.path") {{ route.name }}
 
 </template>
 
