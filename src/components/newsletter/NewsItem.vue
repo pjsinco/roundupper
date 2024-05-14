@@ -95,8 +95,12 @@ export default {
       includeButton.value = true;
     }
 
-    const { text, link, spaceAbove, spaceBelow, copy, buttonTdStyle } =
-      useButtonSetup({ spaceAbove: true, spaceBelow: false });
+    const { text, link, spaceAbove, spaceBelow, copy, buttonTdStyle, hex } =
+      useButtonSetup({
+        spaceAbove: true,
+        spaceBelow: false,
+        colorName: 'Navy',
+      });
 
     function reset() {
       window.location.reload();
@@ -125,6 +129,7 @@ export default {
       spaceAbove,
       spaceBelow,
       buttonTdStyle,
+      hex,
     };
   },
 };

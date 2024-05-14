@@ -2,7 +2,7 @@ table(align="center" border="0" cellpadding="0" cellspacing="0" role="presentati
   tbody
     tr
       td(:style="buttonTdStyle")
-        <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td style="vertical-align:top;width:600px;" ><![endif]-->
+        span#mso_0
         div(class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;")
           table(border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%")
             tbody
@@ -11,7 +11,7 @@ table(align="center" border="0" cellpadding="0" cellspacing="0" role="presentati
                   table(border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:separate;line-height:100%;")
                     tbody
                       tr
-                        td(align="center" bgcolor="#22a49c" role="presentation" style="border:none;border-radius:0;cursor:auto;mso-padding-alt:10px 32px;background:#22a49c;" valign="middle")#msoPadding
-                          a(:href="link" style="display:inline-block;background:#22a49c;color:#ffffff;font-family:Arial, sans-serif;font-size:18px;font-weight:bold;line-height:120%;margin:0;text-decoration:none;text-transform:none;padding:10px 25px;mso-padding-alt:0px;border-radius:0;" target="_blank")
+                        td(align="center" :bgcolor="hex" role="presentation" style="border:none;border-radius:0;cursor:auto;mso-padding-alt:10px 32px;" :style="{ background: hex }" valign="middle")#msoPadding
+                          a(:href="link" style="display:inline-block;color:#ffffff;font-family:Arial, sans-serif;font-size:18px;font-weight:bold;line-height:130%;margin:0;text-decoration:none;text-transform:none;padding:10px 25px;mso-padding-alt:0px;border-radius:0;" :style="{ background: hex }" target="_blank")
                             | {{ text }}
-        <!--[if mso | IE]></td></tr></table><![endif]-->
+        span#mso_1
