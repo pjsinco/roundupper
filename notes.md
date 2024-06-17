@@ -24,3 +24,6 @@ pandoc \
 
 ### Tue Apr 30 09:49:05 2024 CDT
 * [Developing HTML Emails Using Divs and “Ghost Tables” - Web Design](https://elements.envato.com/learn/developing-html-emails-using-divs-and-ghost-tables)
+
+### Sat May 25 07:26:55 2024 CDT
+* [Converting Plain Text To Encoded HTML With Vanilla JavaScript — Smashing Magazine](https://www.smashingmagazine.com/2024/04/converting-text-encoded-html-vanilla-javascript/)
