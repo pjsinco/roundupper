@@ -1,4 +1,4 @@
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
 import { copyHtml, copyText } from '@/composables/useButtonFunctions';
 
 export function useButtonSetup(args = {}) {
@@ -7,18 +7,65 @@ export function useButtonSetup(args = {}) {
     spaceBelow: true,
     text: 'Learn more',
     link: '',
+    colorName: 'Teal',
   };
   let options = Object.assign({}, defaults, args);
+
+  const colorOptions = [
+    {
+      name: 'Teal',
+      hex: '#22a49c',
+    },
+    {
+      name: 'Navy',
+      hex: '#000066',
+    },
+  ];
 
   const text = ref(options.text);
   const link = ref(options.link);
   const spaceAbove = ref(options.spaceAbove);
   const spaceBelow = ref(options.spaceBelow);
+  const selectedColor = ref(options.colorName);
+  const hex = ref(findColorByName(options.colorName).hex);
+
+  function findColorByName(name) {
+    return colorOptions.find((option) => {
+      return option.name === name;
+    });
+  }
+
+  watch(selectedColor, (newSelected) => {
+    const color = findColorByName(newSelected);
+    hex.value = color.hex;
+  });
 
   function copy() {
+    function replaceMsoPlaceholders(html) {
+      const replacements = [
+        `<!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td style="vertical-align:top;width:600px;" ><![endif]-->`,
+        `<!--[if mso | IE]></td></tr></table><![endif]-->`,
+      ];
+
+      const regex = /<span.?id="mso_\d"><\/span>/gm;
+      const targets = [...html.matchAll(regex)];
+
+      console.log(
+        `Found ${targets.length} targets for ${replacements.length} replacements`
+      );
+
+      for (let i = 0, len = replacements.length; i < len; i++) {
+        html = html.replace(targets[i], replacements[i]);
+      }
+
+      return html;
+    }
+
     // our inline style 'mso-padding-alt' gets stripped
     // somewhere along the line, so we need to add it back in.
     const addMsoStyle = (html) => {
+      html = replaceMsoPlaceholders(html);
+
       const fragment = new DocumentFragment();
       const div = document.createElement('div');
       div.innerHTML = html;
@@ -68,5 +115,8 @@ export function useButtonSetup(args = {}) {
     copyTextVersion,
     reset,
     buttonTdStyle,
+    selectedColor,
+    colorOptions,
+    hex,
   };
 }
