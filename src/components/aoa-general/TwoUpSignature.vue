@@ -19,7 +19,7 @@ export default {
 
   setup(props) {
     const defaultImage1Url =
-      'https://resources.osteopathic.org/l/979203/2024-02-15/d6dwq/979203/1708018507zc9ErKRp/signature_monka_228_2x.png';
+      'https://resources.osteopathic.org/l/979203/2024-08-06/g2yc1/979203/1722966237GpG2Zh5p/HubkaT_DO_Signature.jpg';
     const defaultImage2Url =
       'https://resources.osteopathic.org/l/979203/2024-02-15/d6dwm/979203/1708018506pNSVFVsl/signature_creason_228_2x.png';
     const defaultInput = `**Lorem Ipsum Dolor**  \nNullam Fringilla`;
