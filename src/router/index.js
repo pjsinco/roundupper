@@ -82,6 +82,14 @@ const router = createRouter({
             nickname: 'Section head',
           },
         },
+        {
+          path: 'toc',
+          name: 'Affiliates TOC',
+          component: () => import('../components/affiliates/Toc.vue'),
+          meta: {
+            nickname: 'TOC',
+          },
+        },
       ],
     },
     {
